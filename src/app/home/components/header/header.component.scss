@@ -1,0 +1,30 @@
+.header {
+    border-bottom: 1px solid var(--ion-color-light);
+
+    &__content{
+        display: flex;
+        max-width: 1128px;
+        margin: auto;
+    }
+
+    &__search-bar {
+        max-width: 500px;
+        --box-shadow: none;
+        transform: scale(0.8);
+        margin-left: -60px;
+    }
+
+    &__menu-col {
+        width: 80px;
+        text-align: center;
+    }
+
+    &__menu-text {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}
+
+.linkedin-logo {
+    font-size: 40px;
+}
