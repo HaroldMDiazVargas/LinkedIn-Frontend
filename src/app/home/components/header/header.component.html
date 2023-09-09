@@ -6,7 +6,7 @@
           <ion-icon color="primary" name="logo-linkedin" class="linkedin-logo"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-searchbar color="tertiary" class="ion-hide-sm-down header__search-bar" placeholder="Search"></ion-searchbar>
+      <ion-searchbar color="tertiary" class="ion-hide-lg-down header__search-bar" placeholder="Search"></ion-searchbar>
       <ion-grid class="header__menu">
         <ion-row class="ion-justify-content-end">
           <ion-col class="header__menu-col">
@@ -27,11 +27,19 @@
           </ion-col>
           <ion-col class="header__menu-col">
             <ion-icon name="notifications"></ion-icon>
+            <ion-badge color="danger" class="notification-badge">10</ion-badge>
             <div class="header__menu-text">Notifications</div>
           </ion-col>
-          <ion-col class="header__menu-col">
-            <ion-icon name="people"></ion-icon>
-            <div class="header__menu-text">Me</div>
+          <ion-col size="auto" class="header__menu-col">
+            <ion-avatar class="avatar">
+              <ion-img
+              alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              ></ion-img>
+            </ion-avatar>
+            <div class="header__menu-text avatar__label">
+              Me
+              <ion-icon name="caret-down-outline" class="avatar__caret"></ion-icon>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>

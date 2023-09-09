@@ -23,8 +23,35 @@
         font-size: 12px;
         font-weight: 400;
     }
+
+}
+
+.notification-badge {
+    position: relative;
+    bottom: 10px;;
+    right: 10px;
+    color: white;
+    border-radius: 100%;
+    padding: 4px 4px;
+    font-size: 10px;
 }
 
 .linkedin-logo {
     font-size: 40px;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+
+    &__label{ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 24px;
+    }
+    &__caret{
+        font-size: 20px;
+    }
 }
