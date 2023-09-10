@@ -1,0 +1,22 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 100%;
+  }
+  
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+

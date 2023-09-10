@@ -1,0 +1,29 @@
+// 700px, 900px, 1440px
+@use "_functions" as f;
+
+// Used for up(min-width)
+$breakpoints-up: (
+  "medium": 700px,
+  "large": 900px,
+  "xlarge": 1440px,
+);
+
+// Used for down(max-width)
+
+$breakpoints-down: (
+  "small": 699.98px,
+  "medium": 899.98px,
+  "large": 1439.98px,
+);
+
+@mixin breakpoint($size) {
+  @media (min-width: f.rem(map-get($breakpoints-up, $size))) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: f.rem(map-get($breakpoints-down, $size))) {
+    @content;
+  }
+}

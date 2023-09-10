@@ -1,26 +1,28 @@
+@use "src/styles/utils" as u;
+
 .header {
-    border-bottom: 1px solid var(--ion-color-light);
+    border-bottom: u.rem(1px) solid var(--ion-color-light);
 
     &__content{
         display: flex;
-        max-width: 1128px;
+        max-width: u.rem(1128px);
         margin: auto;
     }
 
     &__search-bar {
-        max-width: 500px;
+        max-width: u.rem(500px);
         --box-shadow: none;
         transform: scale(0.8);
-        margin-left: -60px;
+        margin-left: u.rem(-60px);
     }
 
     &__menu-col {
-        width: 80px;
+        width: u.rem(80px);
         text-align: center;
     }
 
     &__menu-text {
-        font-size: 12px;
+        font-size: clamp(u.rem(8px), u.rem(7px) + 1vw, u.rem(14px));
         font-weight: 400;
     }
 
@@ -28,35 +30,35 @@
 
 .notification-badge {
     position: relative;
-    bottom: 10px;;
-    right: 10px;
+    bottom: u.rem(10px);;
+    right: u.rem(10px);
     color: white;
     border-radius: 100%;
-    padding: 4px 4px;
-    font-size: 10px;
+    padding: u.rem(4px) u.rem(4px);
+    font-size: u.rem(10px);
 }
 
 .linkedin-logo {
-    font-size: 40px;
+    font-size: u.rem(40px);
 }
 
 .avatar {
-    width: 24px;
-    height: 24px;
+    width: u.rem(24px);
+    height: u.rem(24px);
     margin: auto;
 
     &__label{ 
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 24px;
+        height: u.rem(24px);
     }
     &__caret{
-        font-size: 20px;
+        font-size: u.rem(20px);
     }
 }
 
 .user-popover {
     --box-shadow: none;
-    margin-top: 14px;
+    margin-top: u.rem(14px);
 }

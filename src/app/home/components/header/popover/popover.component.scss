@@ -1,24 +1,25 @@
+@use "src/styles/utils" as u;
+
 .popover__subtitle{
     font-weight: bold;
-    font-size: 18px;
+    font-size: u.rem(18px);
 }
 
 .item-divider {
-    border: 1px solid var(--ion-color-light-tint);
+    border: u.rem(1px) solid var(--ion-color-light-tint);
 }
 
-
 .user-popover {
-    width: 300px;
+    width: u.rem(300px);
 
     &__subtitle {
         font-weight: bold;
-        font-size: 15px;
-        margin-bottom: 5px;
+        font-size: u.rem(15px);
+        margin-bottom: u.rem(5px);
     }
 
     &__text {
-        padding-bottom: 5px;
+        padding-bottom: u.rem(5px);
         cursor: pointer;
         
         &:hover {

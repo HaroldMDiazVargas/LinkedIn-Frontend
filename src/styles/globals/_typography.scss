@@ -1,0 +1,35 @@
+@use "../utils/" as u;
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 0;
+}
+
+h1 {
+  // font-size: calc(1.6rem + 2vw);
+  // font-size: clamp(2.8rem, 1.6rem + 2vw, 4rem); //min, prefer, max
+  font-size: clamp(
+    u.rem(28px),
+    u.rem(16px) + 2vw,
+    u.rem(40px)
+  ); //Use if let font-size = 100%
+}
+
+h2 {
+  // font-size: clamp(2.2rem, 1.4rem + 1.5vw, 3.6rem);    //Use if let font-size = 62.5%
+  font-size: clamp(u.rem(22px), u.rem(14px) + 2vw, u.rem(36px));
+}
+
+p {
+  margin-top: 0;
+  font-size: u.rem(16px);
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
