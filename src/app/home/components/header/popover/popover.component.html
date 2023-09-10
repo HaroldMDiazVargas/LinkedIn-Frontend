@@ -1,3 +1,45 @@
-<p>
-  popover works!
-</p>
+<ion-card class="user-popover">
+  <ion-card-header>
+    <ion-grid>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col>
+          <ion-avatar class="avatar">
+            <ion-img
+              alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              ></ion-img>
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="8" class="user-popover__info">
+          <ion-card-title>Harold Mauricio Díaz Vargas</ion-card-title>
+          <ion-card-subtitle>Software Developer</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button expand="block" shape="round" size="small" fill="outline" color="primary">View profile</ion-button>
+  </ion-card-header>
+
+  <div class="item-divider"></div>
+
+  <ion-card-content class="user-popover__section">
+    <ion-card-subtitle class="user-popover__subtitle">Account</ion-card-subtitle>
+    <p class="user-popover__text">Setting & Privacy</p>
+    <p class="user-popover__text">Help</p>
+    <p class="user-popover__text">Language</p>
+  </ion-card-content>
+
+  <div class="item-divider"></div>
+
+  <ion-card-content class="user-popover__section">
+    <ion-card-subtitle class="user-popover__subtitle">Manager</ion-card-subtitle>
+    <p class="user-popover__text">Posts and Activities</p>
+    <p class="user-popover__text">Job Posting Account</p>
+  </ion-card-content>
+
+  <div class="item-divider"></div>
+
+  <ion-card-content class="user-popover__section">
+    <p class="user-popover__text">Sign out</p>
+  </ion-card-content>
+
+
+</ion-card>
