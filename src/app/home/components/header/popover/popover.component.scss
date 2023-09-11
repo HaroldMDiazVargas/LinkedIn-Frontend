@@ -1,30 +1,46 @@
 @use "src/styles/utils" as u;
 
-.popover__subtitle{
-    font-weight: bold;
-    font-size: u.rem(18px);
-}
-
 .item-divider {
     border: u.rem(1px) solid var(--ion-color-light-tint);
 }
 
 .user-popover {
-    width: u.rem(300px);
+    width: clamp(u.rem(150px), u.rem(150px) + 20vw, u.rem(300px));
 
     &__subtitle {
         font-weight: bold;
-        font-size: u.rem(15px);
         margin-bottom: u.rem(5px);
     }
 
     &__text {
         padding-bottom: u.rem(5px);
         cursor: pointer;
+        font-size: clamp(u.rem(8px), u.rem(3px) + 2vw, u.rem(14px));
         
         &:hover {
             text-decoration: underline;
         }
+
+        @include u.breakpoint-down(exSmall) {
+            padding-bottom: u.rem(3px);
+          }
     }
+    &__info ion-card-title {
+        font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
+    }
+    &__info ion-card-subtitle, &__subtitle {
+        font-size: clamp(u.rem(8px), u.rem(4px) + 2vw, u.rem(16px));
+    }
+
+    &__btn {
+        @include u.breakpoint-down(small) {
+            font-size: u.rem(11px);
+          }
+    }
+}
+
+.avatar {
+    width: auto;
+    height: auto;
 }
 
