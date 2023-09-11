@@ -24,6 +24,11 @@
     &__menu-text {
         font-size: clamp(u.rem(8px), u.rem(7px) + 1vw, u.rem(14px));
         font-weight: 400;
+
+        @include u.breakpoint-down(exSmall) {
+            display: none;
+          }
+
     }
 
 }
@@ -52,6 +57,9 @@
         justify-content: center;
         align-items: center;
         height: u.rem(24px);
+        @include u.breakpoint-down(exSmall) {
+            display: none;
+          }
     }
     &__caret{
         font-size: u.rem(20px);
