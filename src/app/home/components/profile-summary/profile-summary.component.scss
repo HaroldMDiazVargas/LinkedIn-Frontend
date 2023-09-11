@@ -16,6 +16,11 @@
         &-title{
             margin-top: 30px;
             font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
         }
         &-subtitle{
             font-size: clamp(u.rem(8px), u.rem(4px) + 2vw, u.rem(16px));
@@ -25,6 +30,11 @@
         position: absolute;
         bottom: 70px;
         border: 2px solid #fff;
+    }
+
+    ion-card-content:hover {
+        cursor: pointer;
+        background-color: #e1e1e1;
     }
 
 
