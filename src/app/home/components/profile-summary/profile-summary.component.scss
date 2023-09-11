@@ -8,13 +8,10 @@
     border-radius: 5%;
     
     &__header{
-        display: flex;
-        position: relative;
-        justify-content: center;
-        align-items: center;
+        margin-top: u.rem(-54px);
 
         &-title{
-            margin-top: 30px;
+            margin-top: u.rem(15px);
             font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
 
             &:hover {
@@ -27,9 +24,9 @@
         }
     }
     &__avatar {
-        position: absolute;
-        bottom: 70px;
-        border: 2px solid #fff;
+        margin: auto;
+        border: 2px solid var(--ion-color-primary-contrast);
+        box-shadow: inset 0px 0px 0px 10px var(--ion-color-primary-contrast);
     }
 
     ion-card-content:hover {
@@ -41,31 +38,31 @@
 }
 
 .backdrop {
-    height: 54px;
+    height: u.rem(54px);
     display: flex;
     background-color: #dbe7e9;
 
     .background-one {
         background-color: #a0b4b7;
-        width: 150px;
+        width: u.rem(150px);
         height: 100%;
     }
 
     .half-ellipse {
         border-radius: 0 100% 100% 0 / 70%;
         background-color: #a0b4b7;
-        width: 10px;
+        width: u.rem(10px);
         height: 100%;
     }
 
     .background-two {
         background-color: #dbe7e9;
-        width: 15px;
+        width: u.rem(15px);
         height: 100%;
     }
     .background-three {
         background-color: #bfd3d6;
-        width: 45px;
+        width: u.rem(45px);
         height: 100%;
     }
 }
