@@ -1,0 +1,10 @@
+@use "src/styles/utils" as u;
+.profile-summary {
+    height: 80%;
+    background-color: #fff;
+    // width: clamp(u.rem(100px), u.rem(120px) + 7vw, u.rem(282px));
+    flex-grow: 1; 
+    flex-basis: 0;
+    box-shadow: none;
+    border: 1px solid #e1e1e1;
+}

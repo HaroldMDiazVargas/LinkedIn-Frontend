@@ -1,0 +1,9 @@
+.advertising {
+    // width: 200px;
+    flex-grow: 1; /* Both of these items will grow to take equal space */
+    flex-basis: 0;
+    height: 80%;
+    background-color: #fff;
+    box-shadow: none;
+    border: 1px solid #e1e1e1;
+}

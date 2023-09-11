@@ -1,0 +1,9 @@
+.start-post {
+    // width: clamp(u.rem(100px), u.rem(120px) + 7vw, u.rem(282px));
+    height: 80%;
+    background-color: #fff;
+    flex-grow: 2; 
+    flex-basis: 0; 
+    box-shadow: none;
+    border: 1px solid #e1e1e1;
+}
