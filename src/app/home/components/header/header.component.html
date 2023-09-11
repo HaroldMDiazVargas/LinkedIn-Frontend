@@ -30,7 +30,12 @@
             <ion-badge color="danger" class="notification-badge">10</ion-badge>
             <div class="header__menu-text">Notifications</div>
           </ion-col>
-          <ion-col size="auto" class="header__menu-col">
+          <ion-col size="auto" class="header__menu-col" id="click-trigger">
+            <ion-popover class="user-popover" trigger="click-trigger"  show-backdrop="false" triggerAction="click">
+              <ng-template>
+                <app-popover></app-popover>
+              </ng-template>
+            </ion-popover>
             <ion-avatar class="avatar">
               <ion-img
               alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
@@ -38,12 +43,8 @@
             </ion-avatar>
             <div class="header__menu-text avatar__label">
               Me
-              <ion-icon name="caret-down-outline" class="avatar__caret" id="click-trigger">
-                <ion-popover class="user-popover" trigger="click-trigger"  show-backdrop="false" triggerAction="click">
-                  <ng-template>
-                    <app-popover></app-popover>
-                  </ng-template>
-                </ion-popover>
+              <ion-icon name="caret-down-outline" class="avatar__caret">
+              
               </ion-icon>
             </div>
           </ion-col>
