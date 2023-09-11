@@ -1,8 +1,5 @@
 @use "src/styles/utils" as u;
 
-.item-divider {
-    border: u.rem(1px) solid var(--ion-color-light-tint);
-}
 
 .user-popover {
     width: clamp(u.rem(150px), u.rem(150px) + 20vw, u.rem(300px));
