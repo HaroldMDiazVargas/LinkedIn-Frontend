@@ -1,9 +1,79 @@
+@use "src/styles/utils" as u;
+
 .advertising {
-    // width: 200px;
-    flex-grow: 1; /* Both of these items will grow to take equal space */
+    flex-grow: 1;
     flex-basis: 0;
-    height: 80%;
     background-color: #fff;
     box-shadow: none;
     border: 1px solid #e1e1e1;
+    border-radius: 5%;
+
+    &__header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title{
+        font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
+    }
+
+    &__users{
+        display: flex;
+
+        &-avatar{
+            width: u.rem(45px);
+            height: u.rem(45px);
+            margin: auto;
+            cursor: pointer;
+            @include u.breakpoint-down(small) {
+                width: u.rem(30px);
+                height: u.rem(30px);
+            }
+            @include u.breakpoint-down(exSmall) {
+                display: none;
+            }
+
+        }
+        
+        &-info {
+            margin-left: u.rem(10px);
+            cursor: pointer;
+
+            ion-button{
+                font-size: clamp(u.rem(8px), u.rem(4px) + 2vw, u.rem(12px));
+                font-weight: bold;
+                max-width:100px;
+
+                ion-icon{
+                    font-size: u.rem(18px);
+                }
+            }
+        }
+        
+        &-name{
+            font-weight: bold;
+            font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+        }
+
+        &-profession{
+            font-weight: 300;
+            font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+        }
+    }
+
+
+    &__footer{
+        display: flex;
+        align-items: center;
+        margin: u.rem(10px) auto 0 u.rem(15px);
+        padding-bottom: u.rem(15px);
+        span {
+            font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+            margin-right: u.rem(5px);
+        }
+
+        ion-icon {
+            font-size: u.rem(15px);
+        }
+    }
 }
