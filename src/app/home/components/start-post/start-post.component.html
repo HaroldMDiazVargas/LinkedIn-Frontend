@@ -2,12 +2,11 @@
     <ion-card class="start-post">
         <ion-card-header>
             <div class="post__create ion-margin-bottom">
-                <ion-avatar class="ion-margin-auto advertising__users-avatar">
+                <ion-avatar class="ion-margin-auto">
                     <ion-img
                     alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
                     ></ion-img>
                 </ion-avatar>
-                <!-- <div style="width: 300px;"></div> -->
             </div>
             <div class="post__addons ion-margin-top">
                 <div class="post__addons-container">
@@ -25,6 +24,7 @@
             </div>
         </ion-card-header>
     </ion-card>
+
     <div class="filter">
         <div class="filter__divider"></div>
         <div class="filter__menu">
@@ -33,4 +33,69 @@
             <ion-icon name="caret-down" class="filter__icon"></ion-icon>
         </div>
     </div>
+
+    <ion-card class="post">
+        <ion-card-header class="header">
+            <div class="header__avatar ion-margin-bottom">
+                <ion-avatar class="ion-margin-auto">
+                    <ion-img
+                    alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                    ></ion-img>
+                </ion-avatar>
+            </div>
+            <div class="ion-margin-top header__info">
+                <ion-card-title class="header__title">Harold Mauricio Díaz Vargas</ion-card-title>
+                <ion-card-subtitle class="header__subtitle">
+                    <div class="header__subtitle-stats">9.999.999 followers</div>
+                    <div class="header__subtitle-date">
+                        <span>18 hours ago</span>
+                        <ion-icon name="globe-outline"></ion-icon>
+                    </div>
+                </ion-card-subtitle>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content class="content">
+            <div class="content__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum dignissimos facere eius fuga vero ab dolorem dolorum debitis minima, natus repudiandae temporibus, eaque voluptatem laborum magni expedita ratione! Quasi, recusandae hic! Nulla porro expedita, sunt quis ex fuga laborum explicabo repellendus autem temporibus iste sequi nihil corrupti natus odit molestias.
+            </div>
+            <div class="content__media"></div>
+            <div class="content__statics">
+                <div class="content__statics-reactions">
+                    <div class="icon-container icon-container--blue">
+                        <fa-icon [icon]="faThumbsUp" class="like"></fa-icon>
+                    </div>
+                    <div class="icon-container icon-container--yellow">
+                        <ion-icon name="heart" class="heart"></ion-icon>
+                    </div>
+                    <div class="icon-container icon-container--red">
+                        <ion-icon name="bulb" class="bulb"></ion-icon>
+                    </div>
+                    <span class="content__statics-reactions__total">217</span>
+                </div>
+                <div class="content__statics-comments">23 comentarios • 28 veces compartido</div>
+            </div>
+            <div class="content__divider"></div>
+            <div class="content__interact">
+                <div class="content__react">
+                    <fa-icon [icon]="faThumbsUp"></fa-icon>
+                    Recommend
+                </div>
+                <div class="content__comment">
+                    <fa-icon [icon]="faComment"></fa-icon>
+                    Comment
+                </div>
+                <div class="content__share">
+                    <ion-icon name="share-social-outline"></ion-icon>
+                    Share
+                </div>
+                <div class="content__send">
+                    <ion-icon name="send"></ion-icon>
+                    Send
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+
 </div>
