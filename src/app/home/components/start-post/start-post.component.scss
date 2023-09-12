@@ -77,6 +77,9 @@ $width-card: 45vw;
     }
 
     &__menu{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
         font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
         margin-right: u.rem(5px);
     }
