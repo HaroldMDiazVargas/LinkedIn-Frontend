@@ -1,3 +1,36 @@
-<ion-card class="start-post">
-
-</ion-card>
+<div class="card-post__container">
+    <ion-card class="start-post">
+        <ion-card-header>
+            <div class="post__create ion-margin-bottom">
+                <ion-avatar class="ion-margin-auto advertising__users-avatar">
+                    <ion-img
+                    alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                    ></ion-img>
+                </ion-avatar>
+                <!-- <div style="width: 300px;"></div> -->
+            </div>
+            <div class="post__addons ion-margin-top">
+                <div class="post__addons-container">
+                    <ion-icon name="image" class="post__addons-image"></ion-icon>
+                    <span>Multimedia content</span>
+                </div>
+                <div class="post__addons-container">
+                    <ion-icon name="calendar" class="post__addons-event"></ion-icon>
+                    <span>Event</span>
+                </div>
+                <div class="post__addons-container">
+                    <ion-icon name="newspaper" class="post__addons-article"></ion-icon>
+                    <span>Write an article</span>
+                </div>
+            </div>
+        </ion-card-header>
+    </ion-card>
+    <div class="filter">
+        <div class="filter__divider"></div>
+        <div class="filter__menu">
+            <span>Sort by: </span>
+            <span>Main</span>
+        </div>
+        <ion-icon name="caret-down" class="filter__icon"></ion-icon>
+    </div>
+</div>
