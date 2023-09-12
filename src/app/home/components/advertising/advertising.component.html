@@ -2,7 +2,17 @@
     <ion-card-header>
         <div class="advertising__header">
             <ion-card-title class="advertising__title">Add to your feed</ion-card-title>
-            <ion-icon name="information-circle"></ion-icon>
+            <ion-icon name="information-circle" id="click-icon">
+              <ion-popover class="info__popover" trigger="click-icon" show-backdrop="false" triggerAction="click" side="left" alignment="center">
+                <ng-template>
+                  <ion-content class="info__popover-content">
+                    <div>Follow topics that interest you to personalize your feed. <span>More information</span></div>
+                      
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </ion-icon>
+
         </div>
     </ion-card-header>
     <ion-card-content class="advertising__users">

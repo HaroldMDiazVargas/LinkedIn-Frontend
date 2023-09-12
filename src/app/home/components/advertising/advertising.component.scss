@@ -11,6 +11,9 @@
     &__header{
         display: flex;
         justify-content: space-between;
+        ion-icon {
+            cursor: pointer;
+        }
     }
 
     &__title{
@@ -74,6 +77,26 @@
 
         ion-icon {
             font-size: u.rem(15px);
+        }
+    }
+
+}
+
+.info__popover {
+    margin-top: u.rem(-40px);
+    margin-left: u.rem(-5px);
+    &-content {
+        max-width: u.rem(200px);
+        font-size: u.rem(12px);
+        div{
+            padding: u.rem(7px) u.rem(10px);
+
+            span {
+                color: var(--ion-color-primary);
+                cursor: pointer;
+                font-weight: bold;
+                
+            }
         }
     }
 }
