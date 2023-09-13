@@ -1,8 +1,6 @@
 @use "src/styles/utils" as u;
 .profile-summary {
     background-color: #fff;
-    flex-grow: 1; 
-    flex-basis: 0;
     box-shadow: none;
     border: 1px solid #e1e1e1;
     border-radius: u.rem(10px);

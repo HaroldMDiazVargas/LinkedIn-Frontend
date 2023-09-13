@@ -1,14 +1,11 @@
 @use "src/styles/utils" as u;
 
-
-$width-card: 45vw;
-
 .start-post {
     background-color: #fff;
-    width: $width-card;
     box-shadow: none;
     border: 1px solid hsl(0, 0%, 88%);
     border-radius: u.rem(10px);
+
 
     .post{
         &__create {
@@ -26,6 +23,7 @@ $width-card: 45vw;
             display: flex;
             margin: auto;
             width: 90%;
+
             justify-content: space-between;
 
             &-container {
@@ -39,22 +37,31 @@ $width-card: 45vw;
                     background-color: #e1e1e1;
                 }
                 
-                span {
-                    margin-left: u.rem(5px);
-                    font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+                p {
+                    margin: auto 0 auto u.rem(5px);
+                    font-size: clamp(u.rem(5px), u.rem(5px) + 1vw, u.rem(13px));
+                    @include u.breakpoint-down(medium) {
+                        display: none;
+                    }
                 }
             }
 
+            &-image, &-event, &-article{
+                font-size: u.rem(20px);
+                @include u.breakpoint-down(medium) {
+                    font-size: u.rem(30px)
+                }
+            }
             &-image{
                 color: var(--ion-color-primary);
             }
 
             &-event{
-                color: #c37d16
+                color: #c37d16;
             }
 
             &-article{
-                color: #e16745
+                color: #e16745;
             }
         }
     }
@@ -64,7 +71,7 @@ $width-card: 45vw;
 .filter {
     display: flex;
     flex-wrap: nowrap;
-    width: $width-card;
+    // width: $width-card;
     margin: auto;
     justify-content: center;
     align-items: center;
@@ -90,7 +97,7 @@ $width-card: 45vw;
 }
 
 .post {
-    width: $width-card;
+    // width: $width-card;
     .header{
         display: flex;
         flex-direction: row;
