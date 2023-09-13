@@ -1,10 +1,11 @@
 @use "src/styles/utils" as u;
 :host {
     justify-content: start;
+    overflow: auto;
 }
 
 .content-container {
     display: flex;
     width: clamp(u.rem(280px), 100vw, u.rem(1128px));
-    margin: 48px auto 0;
+    margin: u.rem(48px) auto 0;
 }

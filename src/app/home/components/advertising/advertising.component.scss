@@ -24,16 +24,18 @@
         display: flex;
 
         &-avatar{
-            width: u.rem(45px);
-            height: u.rem(45px);
-            margin: auto;
-            cursor: pointer;
-            @include u.breakpoint-down(small) {
-                width: u.rem(30px);
-                height: u.rem(30px);
-            }
-            @include u.breakpoint-down(exSmall) {
-                display: none;
+            ion-img {
+                width: u.rem(45px);
+                height: u.rem(45px);
+                margin: auto;
+                cursor: pointer;
+                @include u.breakpoint-down(small) {
+                    width: u.rem(30px);
+                    height: u.rem(30px);
+                }
+                @include u.breakpoint-down(exSmall) {
+                    display: none;
+                }
             }
 
         }
