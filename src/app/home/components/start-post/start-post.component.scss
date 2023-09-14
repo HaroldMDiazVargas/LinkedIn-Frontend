@@ -14,7 +14,26 @@
             ion-avatar{
                 width: u.rem(40px);
                 height: u.rem(40px);
-                margin: auto;
+            }
+
+            &-btn {
+                width: 100%;
+                margin: 0 auto 0 u.rem(5px);
+                --background-hover: #e1e1e1;
+
+                span{
+                    margin-right: auto;
+                    margin-left: u.rem(5px);
+                    text-transform: lowercase;
+                    padding: u.rem(15px) 0;
+                    font-weight: 600;
+
+                    &::first-letter{
+                        text-transform: uppercase;
+                    }
+                  
+
+                }
             }
 
         }
