@@ -71,25 +71,28 @@
                     </div>
                     <span class="content__statics-reactions__total">217</span>
                 </div>
-                <div class="content__statics-comments">23 comentarios • 28 veces compartido</div>
+                <div class="content__statics-comments">
+                    <span>23 comentarios</span> •
+                    <span>28 veces compartido</span>
+                </div>
             </div>
             <div class="content__divider"></div>
             <div class="content__interact">
                 <div class="content__react">
-                    <fa-icon [icon]="faThumbsUp"></fa-icon>
-                    Recommend
+                    <fa-icon [icon]="faThumbsUp" class="content__react-icon"></fa-icon>
+                    <span class="content__react-text">Recommend</span>
                 </div>
-                <div class="content__comment">
-                    <fa-icon [icon]="faComment"></fa-icon>
-                    Comment
+                <div class="content__react">
+                    <fa-icon [icon]="faComment" class="content__react-icon"></fa-icon>
+                    <span class="content__react-text">Comment</span>
                 </div>
-                <div class="content__share">
-                    <ion-icon name="share-social-outline"></ion-icon>
-                    Share
+                <div class="content__react">
+                    <ion-icon name="share-social-outline" class="content__react-icon"></ion-icon>
+                    <span class="content__react-text">Share</span>
                 </div>
-                <div class="content__send">
-                    <ion-icon name="send"></ion-icon>
-                    Send
+                <div class="content__react">
+                    <ion-icon name="send" class="content__react-icon"></ion-icon>
+                    <span class="content__react-text">Send</span>
                 </div>
             </div>
         </ion-card-content>
