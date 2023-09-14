@@ -43,12 +43,18 @@
             cursor: pointer;
 
             ion-button{
-                font-size: clamp(u.rem(8px), u.rem(4px) + 2vw, u.rem(12px));
+                font-size: u.rem(12px);
                 font-weight: bold;
-                max-width:100px;
-
                 ion-icon{
-                    font-size: u.rem(18px);
+                    font-size: u.rem(20px);
+                    margin: 0;
+                }
+
+                @include u.breakpoint-down(small) {
+                    font-size: u.rem(8px);
+                    ion-icon{
+                        font-size: u.rem(10px);
+                    }
                 }
             }
         }
@@ -60,7 +66,7 @@
 
         &-profession{
             font-weight: 300;
-            font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+            font-size: clamp(u.rem(8px), u.rem(3px) + 1vw, u.rem(13px));
         }
     }
 

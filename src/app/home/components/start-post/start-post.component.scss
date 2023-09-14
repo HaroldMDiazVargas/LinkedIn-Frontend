@@ -40,7 +40,7 @@
                 p {
                     margin: auto 0 auto u.rem(5px);
                     font-size: clamp(u.rem(5px), u.rem(5px) + 1vw, u.rem(13px));
-                    @include u.breakpoint-down(medium) {
+                    @include u.breakpoint-down(small) {
                         display: none;
                     }
                 }
