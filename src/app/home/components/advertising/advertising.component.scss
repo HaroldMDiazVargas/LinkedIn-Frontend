@@ -23,8 +23,8 @@
 
         &-avatar{
             ion-img {
-                width: u.rem(45px);
-                height: u.rem(45px);
+                width: u.rem(40px);
+                height: u.rem(40px);
                 margin: auto;
                 cursor: pointer;
                 @include u.breakpoint-down(small) {

@@ -104,8 +104,12 @@
         align-items: center;
 
         &__avatar {
-            margin-top: auto;
-            margin-bottom: auto;
+            width: u.rem(45px);
+            height: u.rem(45px);
+            @include u.breakpoint-down(small) {
+                width: u.rem(35px);
+                height: u.rem(35px);
+            }
         }
 
         &__info {
