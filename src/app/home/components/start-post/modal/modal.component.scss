@@ -1,0 +1,77 @@
+@use "src/styles/utils" as u;
+
+.modal {
+    width: 50vw;
+    padding: u.rem(10px);
+    margin: 0;
+    padding: 0;
+    &__header {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__avatar ion-img{
+        width: u.rem(40px);
+        height: u.rem(40px);
+        margin: auto u.rem(5px);
+    }
+
+    &__text {
+        
+        &-container{
+            height: 40vh;
+            max-height: 40vh;
+        }
+
+        &-area {
+            max-height: 35vh;
+            overflow: auto;
+        }
+    }
+
+    &__action {
+        ion-icon {
+            border-radius: 100%;
+            background-color: #f2f2f2;
+            padding: u.rem(12px);
+            font-size: u.rem(25px);
+            text-align: center;
+            margin-right: u.rem(7px);
+            color: #606060;
+
+            &:hover {
+                box-shadow: 0 3px 5px #756e6e;
+                cursor: pointer;
+            }
+        }
+
+
+    }
+
+    &__divider {
+        border: u.rem(1px) solid var(--ion-color-light-tint);
+    }
+
+    &__btn{
+        display: flex;
+        height:10%;
+        justify-content: flex-end;
+        align-items: center;
+
+
+        ion-button{
+            margin-left: u.rem(5px);
+            span{
+                text-transform: lowercase;
+                padding: u.rem(5px) u.rem(10px);
+                font-weight: 600;
+
+                &::first-letter{
+                    text-transform: uppercase;
+                }
+              
+
+            }
+        }
+    }
+}

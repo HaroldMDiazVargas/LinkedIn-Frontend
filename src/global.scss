@@ -33,6 +33,13 @@ ion-popover {
     --background: none
 }
 
+.modal-global-class{
+    --width: fit-content;
+    --height: fit-content;
+    --background: none;
+    --box-shadow: none;
+    --backdrop-opacity: 0.7;
+}
 .item-divider {
     border: u.rem(1px) solid var(--ion-color-light-tint);
 }

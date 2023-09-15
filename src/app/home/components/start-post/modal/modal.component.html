@@ -1,3 +1,54 @@
-<p>
-  modal works!
-</p>
+<ion-card class="modal">
+  <ion-card-header class="modal__header">
+    <ion-avatar class="modal__avatar">
+      <ion-img
+        alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+        ></ion-img>
+    </ion-avatar>
+    <div>
+      <ion-card-title>Harold Mauricio Díaz Vargas</ion-card-title>
+      <ion-card-subtitle>Publicar en Cualquiera</ion-card-subtitle>
+    </div>
+  </ion-card-header>
+
+
+  <ion-card-content class="modal__text-container" >
+    <ion-textarea class="modal__text-area"  [autoGrow]="true" placeholder="¿Sobre qué quieres hablar?" legacy="true"></ion-textarea>
+  </ion-card-content>
+
+  
+  <ion-card-content>
+    <ion-icon name="happy-outline"></ion-icon>
+  </ion-card-content>
+
+  <ion-card-content>
+    <span class="modal__action">
+      <ion-icon name="image"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="calendar"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="aperture"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="briefcase"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="bar-chart"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="image"></ion-icon>
+    </span>
+    <span class="modal__action">
+      <ion-icon name="people"></ion-icon>
+    </span>
+  </ion-card-content>
+
+  <div class="modal__divider"></div>
+
+  <ion-card-content class="modal__btn">
+    <ion-icon name="time-outline"></ion-icon>
+    <ion-button shape="round" size="small"><span>Post</span></ion-button>
+  </ion-card-content>
+</ion-card>
