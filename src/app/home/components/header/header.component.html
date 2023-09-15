@@ -1,34 +1,42 @@
 <ion-header class="ion-container ion-no-border header">
   <ion-toolbar>
     <div class="header__content">
-      <ion-buttons slot="start" class="ion-no-padding">
-        <ion-button>
-          <ion-icon color="primary" name="logo-linkedin" class="linkedin-logo"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <a href="" class="header__logo">
+        <ion-icon color="primary" name="logo-linkedin" class="linkedin-logo"></ion-icon>
+      </a>
       <ion-searchbar color="tertiary" class="ion-hide-lg-down header__search-bar" placeholder="Search"></ion-searchbar>
       <ion-grid class="header__menu">
         <ion-row class="ion-justify-content-end">
           <ion-col class="header__menu-col">
-            <ion-icon name="home"></ion-icon>
-            <h3 class="header__menu-text">Home</h3>
+              <a href="">
+                <ion-icon name="home"></ion-icon>
+                <h3 class="header__menu-text">Home</h3>
+              </a>  
           </ion-col>
           <ion-col class="header__menu-col">
-            <ion-icon name="people"></ion-icon>
-            <div class="header__menu-text">My Network</div>
+            <a href="">
+              <ion-icon name="people"></ion-icon>
+              <div class="header__menu-text">My Network</div>
+            </a>
           </ion-col>
           <ion-col class="header__menu-col">
-            <ion-icon name="briefcase"></ion-icon>
-            <div class="header__menu-text">Jobs</div>
+            <a href="">
+              <ion-icon name="briefcase"></ion-icon>
+              <div class="header__menu-text">Jobs</div>
+            </a>
           </ion-col>
           <ion-col class="header__menu-col">
-            <ion-icon name="chatbox-ellipses"></ion-icon>
-            <div class="header__menu-text">Messaging</div>
+            <a href="">
+              <ion-icon name="chatbox-ellipses"></ion-icon>
+              <div class="header__menu-text">Messaging</div>  
+            </a>
           </ion-col>
           <ion-col class="header__menu-col notification-container">
-            <ion-icon name="notifications"></ion-icon>
-            <ion-badge color="danger" class="notification-badge">10</ion-badge>
-            <div class="header__menu-text">Notifications</div>
+            <a href="">
+              <ion-icon name="notifications"></ion-icon>
+              <ion-badge color="danger" class="notification-badge">10</ion-badge>
+              <div class="header__menu-text">Notifications</div>  
+            </a>
           </ion-col>
           <ion-col size="auto" class="header__menu-col" id="click-trigger">
             <ion-popover class="user-popover" trigger="click-trigger"  show-backdrop="false" triggerAction="click">

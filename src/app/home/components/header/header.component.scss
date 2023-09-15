@@ -9,11 +9,17 @@
         margin: auto;
     }
 
+    &__logo {
+        align-self: center;
+        margin-left: u.rem(10px);
+    }
+
     &__search-bar {
         max-width: u.rem(500px);
         --box-shadow: none;
         transform: scale(0.8);
-        margin-left: u.rem(-60px);
+        margin-left: u.rem(-50px);
+        padding-top: 0;
     }
 
     &__menu-col {
