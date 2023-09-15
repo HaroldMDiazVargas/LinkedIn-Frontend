@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-start-post',
@@ -14,8 +15,20 @@ export class StartPostComponent  implements OnInit {
   faThumbsUp = faThumbsUp;
   faComment = faComment
 
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {}
+
+  async presentModal(){
+    const modal = await this.modalController.create({
+      component: ModalComponent,
+      cssClass: 'modal-global-class'
+    });
+
+    await modal.present();
+    const { role } = await modal.onDidDismiss();
+
+    console.log(7, role);
+  }
 
 }
