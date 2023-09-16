@@ -7,19 +7,24 @@
     
     &__header{
         margin-top: u.rem(-54px);
+        $g: &; 
 
+        &:hover {
+            cursor: pointer;
+
+            #{$g}-title{
+                text-decoration: underline;
+            }
+        }
         &-title{
             margin-top: u.rem(15px);
             font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
-
-            &:hover {
-                cursor: pointer;
-                text-decoration: underline;
-            }
         }
         &-subtitle{
             font-size: clamp(u.rem(8px), u.rem(4px) + 2vw, u.rem(16px));
         }
+
+
     }
     &__avatar {
         margin: auto;
@@ -94,21 +99,26 @@ ion-card-content {
 }
 
 .premium {
-    display: flex;
-    &__icon {
-        width: u.rem(13px);
-        height: u.rem(13px);
-        background: linear-gradient(to top right, #b58030, #ffba53);
-        margin-right: u.rem(5px);
-    }
+    $g: &; 
+    &__redirect{
+        display: flex;
 
-    p {
-        font-weight: bold;
-        text-decoration: underline;
+        #{$g}__icon {
+            width: u.rem(13px);
+            height: u.rem(13px);
+            background: linear-gradient(to top right, #b58030, #ffba53);
+            margin-right: u.rem(5px);
+        }
+        p {
+            font-weight: bold;
+            text-decoration: underline;
+        }
     }
 
     &:hover{
-        color: var(--ion-color-primary);
+        #{$g}__redirect {
+            color: var(--ion-color-primary);
+        }
     }
 }
 
