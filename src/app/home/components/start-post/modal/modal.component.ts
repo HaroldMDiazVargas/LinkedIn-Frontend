@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -6,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, FormsModule]
 })
 export class ModalComponent  implements OnInit {
 

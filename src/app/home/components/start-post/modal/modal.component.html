@@ -1,54 +1,68 @@
-<ion-card class="modal">
-  <ion-card-header class="modal__header">
+<div class="modal">
+  <div class="modal__header">
     <ion-avatar class="modal__avatar">
       <ion-img
         alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
         ></ion-img>
     </ion-avatar>
-    <div>
-      <ion-card-title>Harold Mauricio Díaz Vargas</ion-card-title>
-      <ion-card-subtitle>Publicar en Cualquiera</ion-card-subtitle>
+    <div class="modal__header-title">Harold Mauricio Díaz Vargas</div>
+    <ion-icon name="caret-down-sharp"></ion-icon>
+    <div class="modal__header-subtitle">Publicar en Cualquiera</div>
+  </div>
+
+  <form action="" class="modal__form" #f="ngForm">
+    <div class="modal__form-container">
+      <ion-textarea 
+        ngModel
+        #body="ngModel"
+        class="modal__form-area"  
+        type="text" 
+        name="body" 
+        required 
+        [autoGrow]="true" 
+        placeholder="¿Sobre qué quieres hablar?" 
+        legacy="true"></ion-textarea>
     </div>
-  </ion-card-header>
+
+    <ion-fab-button class="modal__keyboard">
+      <ion-icon name="happy-outline"></ion-icon>
+    </ion-fab-button>
+
+    <div class="modal__action">
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="image"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="aperture"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="briefcase"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="bar-chart"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="image"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="modal__action-btn">
+        <ion-icon name="people"></ion-icon>
+      </ion-fab-button>
+
+    </div>
+    
+    <div class="modal__divider"></div>
+    
+    <div class="modal__post">
+      <ion-fab-button class="modal__post-schedule">
+        <ion-icon name="time-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-button [disabled]="!f.valid" class="modal__post-btn" shape="round" size="small"><span>Post</span></ion-button>
+    </div>
+  </form>
 
 
-  <ion-card-content class="modal__text-container" >
-    <ion-textarea class="modal__text-area"  [autoGrow]="true" placeholder="¿Sobre qué quieres hablar?" legacy="true"></ion-textarea>
-  </ion-card-content>
 
-  
-  <ion-card-content>
-    <ion-icon name="happy-outline"></ion-icon>
-  </ion-card-content>
-
-  <ion-card-content>
-    <span class="modal__action">
-      <ion-icon name="image"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="calendar"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="aperture"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="briefcase"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="bar-chart"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="image"></ion-icon>
-    </span>
-    <span class="modal__action">
-      <ion-icon name="people"></ion-icon>
-    </span>
-  </ion-card-content>
-
-  <div class="modal__divider"></div>
-
-  <ion-card-content class="modal__btn">
-    <ion-icon name="time-outline"></ion-icon>
-    <ion-button shape="round" size="small"><span>Post</span></ion-button>
-  </ion-card-content>
-</ion-card>
+</div>
