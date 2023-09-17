@@ -5,6 +5,7 @@
     padding: u.rem(10px);
     margin: 0;
     background-color: #fff;
+    position: relative;
     &__header {
         display: grid;
         grid-template-areas: 
@@ -45,6 +46,23 @@
         align-self: center;
         width: u.rem(40px);
         height: u.rem(40px);
+    }
+
+    &__close {
+        --background: #fff;
+        --box-shadow: none;
+        position: absolute;
+        right: u.rem(20px) ;
+        top: u.rem(15px);
+
+        ion-icon {
+            font-size: u.rem(35px);
+            color: #606060;
+        }
+
+        &:hover {
+            --background: #f2f2f2;
+        }
     }
 
     &__form {

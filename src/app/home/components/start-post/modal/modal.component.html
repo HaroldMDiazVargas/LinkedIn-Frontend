@@ -10,7 +10,11 @@
     <div class="modal__header-subtitle">Publicar en Cualquiera</div>
   </div>
 
-  <form action="" class="modal__form" #f="ngForm">
+  <ion-fab-button class="modal__close">
+    <ion-icon name="close-outline"></ion-icon>
+  </ion-fab-button>
+
+  <form action="" class="modal__form" #f="ngForm" (ngSubmit)="onPost()">
     <div class="modal__form-container">
       <ion-textarea 
         ngModel
@@ -59,7 +63,7 @@
       <ion-fab-button class="modal__post-schedule">
         <ion-icon name="time-outline"></ion-icon>
       </ion-fab-button>
-      <ion-button [disabled]="!f.valid" class="modal__post-btn" shape="round" size="small"><span>Post</span></ion-button>
+      <ion-button [disabled]="!f.valid" class="modal__post-btn" type="submit" shape="round" size="small"><span>Post</span></ion-button>
     </div>
   </form>
 
