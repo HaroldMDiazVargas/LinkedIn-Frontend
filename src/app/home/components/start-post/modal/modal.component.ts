@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
@@ -10,13 +11,28 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, FormsModule]
 })
 export class ModalComponent  implements OnInit {
+  
+  @ViewChild('f') form!:NgForm;
 
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {}
 
   onPost() {
-    console.log(8);
+    if (!this.form.valid) return;
+    const body = this.form.value['body'];
+    this.modalController.dismiss(
+      {
+        post: {
+          body
+        }
+      },
+      'post'
+    )
+  }
+
+  async  onDismiss(){
+    await this.modalController.dismiss(null, 'dismiss');
   }
 
 }
