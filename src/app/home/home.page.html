@@ -1,6 +1,17 @@
 <app-header></app-header>
 <div class="content-container">
     <app-profile-summary></app-profile-summary>
-    <app-start-post></app-start-post>
+    <div>
+        <app-start-post></app-start-post>
+        <div class="filter">
+            <div class="filter__divider"></div>
+            <div class="filter__menu">
+                <span>Sort by: </span>
+                <span>Main</span>
+                <ion-icon name="caret-down" class="filter__icon"></ion-icon>
+            </div>
+        </div>
+        <app-all-posts></app-all-posts>
+    </div>
     <app-advertising></app-advertising>
 </div>
