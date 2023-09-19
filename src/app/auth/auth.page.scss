@@ -1,14 +1,16 @@
+@use "src/styles/utils" as u;
+
 .title-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 24px;
+    margin-top: u.rem(24px);
     .linkedin-text{
-        font-size: 36px;
+        font-size: clamp(u.rem(6px), u.rem(30px) + 1vw, u.rem(36px));
         font-weight: 700;
     }
     .linkedin-icon{
-        font-size: 44px;
+        font-size: clamp(u.rem(6px), u.rem(40px) + 1vw, u.rem(44px));
     }
 }
 
@@ -16,7 +18,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 24px 16px;
-    font-size: 30px;
+    margin-top: u.rem(24px) u.rem(16px);
+    font-size: clamp(u.rem(6px), u.rem(20px) + 1vw, u.rem(28px));
     text-align: center;
+}
+
+form {
+    max-width: u.rem(400px);
+    margin: auto;
+    ion-card {
+        box-shadow: none;
+        border:1px solid #e1e1e1;
+        padding: u.rem(24px);
+        .terms-and-conditions {
+            font-size: u.rem(12px);
+            text-align: center;
+            margin-top: u.rem(16px);
+            ion-text {
+                font-weight: 500;
+            }
+        }
+        ion-button {
+            margin-top: u.rem(16px);
+            height: u.rem(48px);
+        }
+
+    }
+}
+
+.toggle-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-text {
+        font-weight: 500;
+        cursor :pointer;
+        margin-left: u.rem(8px);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
