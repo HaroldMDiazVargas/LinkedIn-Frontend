@@ -12,7 +12,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getSelectedPosts(params: string){
-    return this.http.get<Post[]>(this.baseUrl + params)
+    return this.http.get<Post[]>(this.baseUrl + params, { withCredentials: true})
   }
 
 }
