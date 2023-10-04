@@ -9,8 +9,11 @@ export const roleManagerGuard: CanMatchFn = (route, segments) => {
 
   return authService.isUserLoggedIn.pipe(
     take(1),
-    switchMap((isUserLogged: boolean) => {
-        return of(isUserLogged);
+    switchMap((isUserLoggedIn: boolean) => {
+      if (isUserLoggedIn){
+        return of(isUserLoggedIn);
+      }
+      return authService.checkAuthentication();
     }),
     tap((isUserLoggedIn: boolean) => {
       if (!isUserLoggedIn){

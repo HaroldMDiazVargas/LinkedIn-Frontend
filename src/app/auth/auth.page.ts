@@ -31,13 +31,11 @@ export class AuthPage implements OnInit {
 
     if (this.submissionType === 'login'){
       if (!email || !password) return;
-      // console.log('login', email, password);
       return this.auth.login({
         email,
         password
       }).subscribe({
         next: (result) => {
-          console.log(result);
           this.router.navigate(['/home'])
         }
       })
