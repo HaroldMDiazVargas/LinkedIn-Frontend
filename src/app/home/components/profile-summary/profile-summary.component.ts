@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { take } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Role } from 'src/app/auth/models';
+
+
+type BannerColors = {
+  colorOne: string;
+  colorTwo: string;
+  colorThree: string;
+}
 
 @Component({
   selector: 'app-profile-summary',
@@ -8,10 +18,45 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule]
 })
+
 export class ProfileSummaryComponent  implements OnInit {
+  bannerColors: BannerColors = {
+    colorOne: '#a0b4b7',
+    colorTwo: '#dbe7e9',
+    colorThree: '#bfd3d6',
+  };
 
-  constructor() { }
+  constructor(
+    private auth: AuthService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth.userRole.subscribe({
+      next: ((role: Role) => {
+        this.bannerColors = this.getBannerColors(role);
+      })
+    })
+  }
+  
+  private getBannerColors(role: Role): BannerColors{
+    switch (role) {
+      case 'admin':
+        return {
+          colorOne: '#daa520',
+          colorTwo: '#f0e68c',
+          colorThree: '#fafad2',
+        }
+        case 'premium':
+          return {
+            colorOne: '#bc8f8f',
+            colorTwo: '#c09999',
+            colorThree: '#ddadaf',
+          }        
+    
+      default:
+        return this.bannerColors;
+    }
+
+  }
 
 }

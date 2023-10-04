@@ -43,29 +43,30 @@
 .backdrop {
     height: u.rem(54px);
     display: flex;
-    background-color: #dbe7e9;
+    // background-color: #dbe7e9;
 
     .background-one {
-        background-color: #a0b4b7;
+        // background-color: #a0b4b7;
         width: u.rem(150px);
         height: 100%;
     }
 
     .half-ellipse {
         border-radius: 0 100% 100% 0 / 70%;
-        background-color: #a0b4b7;
+        // background-color: #a0b4b7;
         width: u.rem(10px);
         height: 100%;
     }
 
     .background-two {
-        background-color: #dbe7e9;
+        // background-color: #dbe7e9;
         width: u.rem(15px);
         height: 100%;
     }
     .background-three {
-        background-color: #bfd3d6;
-        width: u.rem(45px);
+        // background-color: #bfd3d6;
+        // width: u.rem(45px);
+        flex-grow: 1;
         height: 100%;
     }
 }
