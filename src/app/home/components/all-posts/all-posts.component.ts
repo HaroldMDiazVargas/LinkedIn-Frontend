@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollCustomEvent, IonInfiniteScroll, IonicModule, ScrollCustomEvent } from '@ionic/angular';
 import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,7 @@ import { PostService } from '../../services/post.service';
   // pro
 })
 export class AllPostsComponent  implements OnInit {
+  @Input() postBody?: string;
   @ViewChild(IonInfiniteScroll) infiniteScroll!: IonInfiniteScroll;
 
   faThumbsUp = faThumbsUp;
@@ -28,6 +29,14 @@ export class AllPostsComponent  implements OnInit {
 
   ngOnInit() {
     this.getPosts(false)
+  }
+
+  ngOnChanges(changes: SimpleChanges){    //Detect the input variable changes
+    const postBody = changes['postBody'].currentValue;
+    if (!postBody) return;
+    this.postService.createPost(postBody).subscribe((post: Post) => {
+      this.allLoadedPosts.unshift(post);
+    })
   }
 
   getPosts(isInitialLoad: boolean, ev?: InfiniteScrollCustomEvent ){

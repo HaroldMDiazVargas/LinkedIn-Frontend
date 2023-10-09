@@ -14,5 +14,10 @@ import { AllPostsComponent } from './components/all-posts/all-posts.component';
   imports: [IonicModule, HeaderComponent, ProfileSummaryComponent, StartPostComponent, AdvertisingComponent, AllPostsComponent],
 })
 export class HomePage {
+  body = '';
   constructor() {}
+
+  onCreatePost(body: string){
+    this.body = body;
+  }
 }
