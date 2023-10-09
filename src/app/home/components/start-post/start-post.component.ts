@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { ModalComponent } from './modal/modal.component';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-start-post',
@@ -12,10 +13,13 @@ import { ModalComponent } from './modal/modal.component';
   imports: [IonicModule, FontAwesomeModule]
 })
 export class StartPostComponent  implements OnInit {
+  @Output() create: EventEmitter<any> = new EventEmitter();
   faThumbsUp = faThumbsUp;
   faComment = faComment
 
-  constructor(public modalController: ModalController) { }
+  constructor(
+    public modalController: ModalController
+    ) { }
 
   ngOnInit() {}
 
@@ -26,11 +30,11 @@ export class StartPostComponent  implements OnInit {
     });
 
     await modal.present();
-    const { data, role } = await modal.onDidDismiss();
+    const { data } = await modal.onDidDismiss();
+    if (!data) return;
     if (data){
-      console.log('data exists');
+      this.create.emit(data.post.body)
     }
-    console.log('role', role, 'data', data);
   }
 
 }
