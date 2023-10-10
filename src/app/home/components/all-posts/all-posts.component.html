@@ -16,8 +16,8 @@
             </ion-card-subtitle>
         </div>
         <div class="header__change" *ngIf="(userId$ | async) === post.author.id">
-            <ion-icon class="header__update" name="create-outline"></ion-icon>
-            <ion-icon class="header__delete" name="trash-outline"></ion-icon>
+            <ion-icon (click)="presentUpdateModal(post.id)" class="header__update" name="create-outline"></ion-icon>
+            <ion-icon (click)="deletePost(post.id)" class="header__delete" name="trash-outline"></ion-icon>
         </div>
     </ion-card-header>
 

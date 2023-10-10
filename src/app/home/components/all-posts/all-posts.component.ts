@@ -69,4 +69,19 @@ export class AllPostsComponent  implements OnInit {
   loadData(ev: InfiniteScrollCustomEvent ) {
     this.getPosts(true, ev)
   }
+
+  presentUpdateModal(postId: number){
+    console.log('update')
+  }
+
+  deletePost(postId: number){
+    this.postService.deletePost(postId).subscribe({
+      next: (result) => {
+        this.allLoadedPosts = this.allLoadedPosts.filter(post => post.id !== postId)
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
 }
