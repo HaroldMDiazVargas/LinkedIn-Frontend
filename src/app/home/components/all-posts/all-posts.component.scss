@@ -62,6 +62,9 @@
             }
         }
 
+        &__change{
+            align-self: flex-start;
+        }
         &__update {
             color: var(--ion-color-warning-contrast);
         }
@@ -70,7 +73,6 @@
         }
         &__update, &__delete {
             font-size: u.rem(20px);
-            align-self: flex-start;
             &:hover{
                 cursor: pointer;
                 transform: scale(1.2);

@@ -15,8 +15,10 @@
                 </div>
             </ion-card-subtitle>
         </div>
-        <ion-icon class="header__update" name="create-outline"></ion-icon>
-        <ion-icon class="header__delete" name="trash-outline"></ion-icon>
+        <div class="header__change" *ngIf="(userId$ | async) === post.author.id">
+            <ion-icon class="header__update" name="create-outline"></ion-icon>
+            <ion-icon class="header__delete" name="trash-outline"></ion-icon>
+        </div>
     </ion-card-header>
 
     <ion-card-content class="content">

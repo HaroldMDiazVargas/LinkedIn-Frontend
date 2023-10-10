@@ -41,6 +41,14 @@ export class AuthService {
     )
   }
 
+  get userId(): Observable<number>{
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        return of(user.id);
+      })
+    )
+  }
+
   register(newUser: ISignup): Observable<User>{
     return this.http.post<User>(this.baseUrl+'/register', newUser).pipe(take(1));
   }

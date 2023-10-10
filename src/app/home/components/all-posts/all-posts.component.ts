@@ -5,6 +5,8 @@ import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Post } from '../../models/Post';
 import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
+import { BehaviorSubject, map, take } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-all-posts',
@@ -12,7 +14,7 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./all-posts.component.scss'],
   standalone: true,
   imports: [IonicModule, FontAwesomeModule, CommonModule],
-  // pro
+// pro
 })
 export class AllPostsComponent  implements OnInit {
   @Input() postBody?: string;
@@ -24,11 +26,19 @@ export class AllPostsComponent  implements OnInit {
   queryParams: string = '';
   numberOfPosts = 5;
   skipPosts = 0;
+  userId$ = new BehaviorSubject<number>(0)
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
-    this.getPosts(false)
+    this.getPosts(false);
+    this.authService.userId.pipe(
+      take(1)).subscribe((userId: number ) => {
+        this.userId$.next(userId);
+      })
   }
 
   ngOnChanges(changes: SimpleChanges){    //Detect the input variable changes
