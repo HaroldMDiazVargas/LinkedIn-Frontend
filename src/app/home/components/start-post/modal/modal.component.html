@@ -7,7 +7,7 @@
     </ion-avatar>
     <div class="modal__header-title">Harold Mauricio Díaz Vargas</div>
     <ion-icon name="caret-down-sharp"></ion-icon>
-    <div class="modal__header-subtitle">Publicar en Cualquiera</div>
+    <div class="modal__header-subtitle">Post in Anyone</div>
   </div>
 
   <ion-fab-button class="modal__close" (click)="onDismiss()">
@@ -22,7 +22,8 @@
         type="text" 
         name="body" 
         required
-        [autoGrow]="true" 
+        [autoGrow]="true"
+        [placeholder]="!body ? '¿What do you want to talk about?': null"
         legacy="true"></ion-textarea>
     </div>
 
