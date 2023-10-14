@@ -1,12 +1,13 @@
 import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InfiniteScrollCustomEvent, IonInfiniteScroll, IonicModule, ScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, IonInfiniteScroll, IonicModule, ModalController, ScrollCustomEvent } from '@ionic/angular';
 import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Post } from '../../models/Post';
 import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { BehaviorSubject, map, take } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ModalComponent } from '../start-post/modal/modal.component';
 
 @Component({
   selector: 'app-all-posts',
@@ -30,7 +31,8 @@ export class AllPostsComponent  implements OnInit {
 
   constructor(
     private postService: PostService,
-    private authService: AuthService
+    private authService: AuthService,
+    public modalController: ModalController
     ) { }
 
   ngOnInit() {
@@ -70,8 +72,28 @@ export class AllPostsComponent  implements OnInit {
     this.getPosts(true, ev)
   }
 
-  presentUpdateModal(postId: number){
-    console.log('update')
+  async presentUpdateModal(postToUpdate: Post){
+    console.log(postToUpdate)
+    const modal = await this.modalController.create({
+      component: ModalComponent,
+      cssClass: 'modal-global-class',
+      componentProps: {
+        postToUpdate
+      }
+    });
+
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (!data) return;
+    if (data){
+      const newBody = data.post.body;
+      this.postService.updatePost(postToUpdate.id, newBody).subscribe({
+        next: (result) => {
+          const indx = this.allLoadedPosts.findIndex(post => post.id === postToUpdate.id);
+          this.allLoadedPosts[indx].body = newBody;
+        }
+      })
+    }
   }
 
   deletePost(postId: number){
