@@ -17,14 +17,12 @@
   <form action="" class="modal__form" #f="ngForm" (ngSubmit)="onPost()">
     <div class="modal__form-container">
       <ion-textarea 
-        ngModel
-        #body="ngModel"
+        [(ngModel)]="body"
         class="modal__form-area"  
         type="text" 
         name="body" 
-        required 
+        required
         [autoGrow]="true" 
-        placeholder="¿Sobre qué quieres hablar?" 
         legacy="true"></ion-textarea>
     </div>
 
@@ -63,7 +61,9 @@
       <ion-fab-button class="modal__post-schedule">
         <ion-icon name="time-outline"></ion-icon>
       </ion-fab-button>
-      <ion-button [disabled]="!f.valid" class="modal__post-btn" type="submit" shape="round" size="small"><span>Post</span></ion-button>
+      <ion-button [disabled]="!f.valid" class="modal__post-btn" type="submit" shape="round" size="small"><span>
+        {{ postToUpdate ? 'Edit' : 'Post' }}
+      </span></ion-button>
     </div>
   </form>
 
