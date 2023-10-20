@@ -59,4 +59,10 @@ export class ProfileSummaryComponent  implements OnInit {
 
   }
 
+  onFileSelect(event: Event): void{
+    const file: File | undefined= (event.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+
+  }
+
 }
