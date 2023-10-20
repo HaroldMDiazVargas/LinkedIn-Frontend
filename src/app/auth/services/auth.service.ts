@@ -49,6 +49,17 @@ export class AuthService {
     )
   }
 
+
+  uploadUserImage(formData: FormData): Observable<{ modifiedFileName: string}>{
+    return this.http.put<{modifiedFileName: string}>(environment.apiUrl+'/user/upload', formData, { withCredentials: true }).pipe(
+      tap(({ modifiedFileName}) => {
+        let user = this.user$.value;
+        user.imagePath = modifiedFileName;
+        this.user$.next(user);
+      })
+    );
+  }
+
   register(newUser: ISignup): Observable<User>{
     return this.http.post<User>(this.baseUrl+'/register', newUser).pipe(take(1));
   }
@@ -89,8 +100,12 @@ export class AuthService {
       map((response) => {
           if (response.user)
             this.user$.next(response.user);
-          else
+          else {
             this.user$.next({} as User);
+            Preferences.remove({
+              key: 'user'
+            })
+          }
           return response.isAuthenticated;
       })
     );
