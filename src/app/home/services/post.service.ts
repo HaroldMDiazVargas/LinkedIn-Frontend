@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post';
 import { environment } from 'src/environments/environment';
-import { take } from 'rxjs';
+import { take, tap } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,18 @@ import { take } from 'rxjs';
 export class PostService {
   private baseUrl: string = environment.apiUrl + '/feed';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    // private authService: AuthService
+    ) { 
+      // this.authService.getUserImageName().pipe(                                    //Use only for JWT logic, when localStorage data is not updated!
+      //   take(1),                                                                   //With Session auth, like we're continously call server to check auth
+      //   tap(({ imageName }) => {                                                     //we always have the user data updated, we don't need to call it again!
+      //     const defaultImagePath = 'avatar.svg';
+      //     this.authService.updateUserImagePath(imageName || defaultImagePath).subscribe();
+      //   })
+      // ).subscribe()
+  }
 
   getSelectedPosts(params: string){
     return this.http.get<Post[]>(this.baseUrl + params, { withCredentials: true})
