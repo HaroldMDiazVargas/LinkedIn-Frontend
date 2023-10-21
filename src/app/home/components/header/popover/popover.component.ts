@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -9,16 +10,27 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   standalone: true,
   imports: [IonicModule]
 })
-export class PopoverComponent  implements OnInit {
+export class PopoverComponent  implements OnInit, OnDestroy {
 
+  private subscriptions: Subscription[] = [];
+  userFullImagePath: string = '';
+  userFullName: string = '';
+  
   constructor(
-    private auth: AuthService
+    private authService: AuthService
   ) { }
   
-  ngOnInit() {}
+  ngOnInit() {
+    this.subscriptions.push(this.authService.userFullName.subscribe((userFullName: string) => this.userFullName = userFullName));
+    this.subscriptions.push(this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath));
+  }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+  
   logout(){
-    return this.auth.logout().subscribe();
+    return this.authService.logout().subscribe();
   }
 
 }
