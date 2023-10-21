@@ -69,11 +69,11 @@ export class AuthService {
     )
   }
   
-  getDefaultFullImagePath(): string{
+  private getDefaultFullImagePath(): string{
     return environment.apiUrl+'/feed/image/avatar.svg';
   }
 
-  getFullImagePath(imagePath: string): string{
+  private getFullImagePath(imagePath: string): string{
     return environment.apiUrl+'/feed/image/'+imagePath;
   }
 
