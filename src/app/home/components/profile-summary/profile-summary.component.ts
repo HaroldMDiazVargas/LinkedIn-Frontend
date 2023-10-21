@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { from, switchMap, take, of } from 'rxjs';
+import { from, switchMap, take, of, BehaviorSubject, Subscription, Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Role } from 'src/app/auth/models';
 import { FormControl, FormGroup } from '@angular/forms';
 import { fromBuffer } from 'file-type/core';
 import { FileTypeResult } from 'file-type';
+import { CommonModule } from '@angular/common';
 
 type validFileExtension = 'png' | 'jpg' | 'jpeg';
 type validMimeType = 'image/png' | 'image/jpg' | 'image/jpeg';
@@ -21,10 +22,10 @@ type BannerColors = {
   templateUrl: './profile-summary.component.html',
   styleUrls: ['./profile-summary.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, CommonModule]
 })
 
-export class ProfileSummaryComponent  implements OnInit {
+export class ProfileSummaryComponent  implements OnInit, OnDestroy {
   form!: FormGroup;
 
   validFileExtensions: validFileExtension[] = ['png', 'jpg', 'jpeg'];
@@ -36,6 +37,11 @@ export class ProfileSummaryComponent  implements OnInit {
     colorThree: '#bfd3d6',
   };
 
+  userFullName: string = '';
+  userFullImagePath: string = '';
+  private subscriptions: Subscription[] = [];  //Do this to enable unsubscribe
+
+
   constructor(
     private auth: AuthService
   ) { }
@@ -45,11 +51,13 @@ export class ProfileSummaryComponent  implements OnInit {
       file: new FormControl(null)
     })
 
-    this.auth.userRole.subscribe({
-      next: ((role: Role) => {
-        this.bannerColors = this.getBannerColors(role);
-      })
-    })
+    this.subscriptions.push(this.auth.userRole.subscribe((rol: Role) => this.bannerColors = this.getBannerColors(rol)));
+    this.subscriptions.push(this.auth.userFullName.subscribe((userFullName: string) => this.userFullName = userFullName));
+    this.subscriptions.push(this.auth.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )); 
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
   
   private getBannerColors(role: Role): BannerColors{
@@ -60,15 +68,19 @@ export class ProfileSummaryComponent  implements OnInit {
           colorTwo: '#f0e68c',
           colorThree: '#fafad2',
         }
-        case 'premium':
-          return {
-            colorOne: '#bc8f8f',
-            colorTwo: '#c09999',
-            colorThree: '#ddadaf',
-          }        
+      case 'premium':
+        return {
+          colorOne: '#bc8f8f',
+          colorTwo: '#c09999',
+          colorThree: '#ddadaf',
+        }        
     
       default:
-        return this.bannerColors;
+        return {
+          colorOne: '#a0b4b7',
+          colorTwo: '#dbe7e9',
+          colorThree: '#bfd3d6',
+        }
     }
 
   }
