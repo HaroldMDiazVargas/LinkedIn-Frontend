@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class StartPostComponent  implements OnInit, OnDestroy {
   @Output() create: EventEmitter<any> = new EventEmitter();
-  private subscription!: Subscription;
+  private userImagePathsubscription!: Subscription;
   userFullImagePath: string = '';
   faThumbsUp = faThumbsUp;
   faComment = faComment
@@ -27,11 +27,11 @@ export class StartPostComponent  implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.subscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )
+    this.userImagePathsubscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.userImagePathsubscription.unsubscribe();
   }
 
   async presentModal(){
