@@ -49,6 +49,52 @@ export class AuthService {
     )
   }
 
+  get userStream(): Observable<User>{
+    return this.user$.asObservable();
+  }
+
+  get userFullName(): Observable<string>{
+    return this.userStream.pipe(
+      switchMap((user: User) => {
+        return of(`${user.firstName} ${user.lastName}`)
+      })
+    )
+  }
+
+  get userFullImagePath(): Observable<string>{
+    return this.userStream.pipe(
+      switchMap((user: User) => {
+        return user.imagePath ? of(this.getFullImagePath(user.imagePath)) : of(this.getDefaultFullImagePath());
+      })
+    )
+  }
+  
+  getDefaultFullImagePath(): string{
+    return environment.apiUrl+'/feed/image/avatar.svg';
+  }
+
+  getFullImagePath(imagePath: string): string{
+    return environment.apiUrl+'/feed/image/'+imagePath;
+  }
+
+  // getUserImage(){
+  //   return this.http.get(`${environment.apiUrl}/user/image`).pipe(take(1));
+  // }
+
+  // getUserImageName(): Observable<{imageName: string}>{
+  //   return this.http.get<{imageName: string}>(`${environment.apiUrl}/user/image-name`, { withCredentials: true }).pipe(take(1));
+  // }
+
+  // updateUserImagePath(imagePath: string): Observable<User>{
+  //   return this.user$.pipe(
+  //     take(1),
+  //     map((user: User) => {
+  //       user.imagePath = imagePath;
+  //       this.user$.next(user);
+  //       return user;
+  //     })
+  //   )
+  // }
 
   uploadUserImage(formData: FormData): Observable<{ modifiedFileName: string}>{
     return this.http.put<{modifiedFileName: string}>(environment.apiUrl+'/user/upload', formData, { withCredentials: true }).pipe(
