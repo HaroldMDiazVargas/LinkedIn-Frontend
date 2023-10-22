@@ -1,13 +1,15 @@
-import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollCustomEvent, IonInfiniteScroll, IonicModule, ModalController, ScrollCustomEvent } from '@ionic/angular';
 import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Post } from '../../models/Post';
 import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
-import { BehaviorSubject, map, take } from 'rxjs';
+import { BehaviorSubject, Subscription, map, take } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ModalComponent } from '../start-post/modal/modal.component';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/auth/models';
 
 @Component({
   selector: 'app-all-posts',
@@ -17,10 +19,11 @@ import { ModalComponent } from '../start-post/modal/modal.component';
   imports: [IonicModule, FontAwesomeModule, CommonModule],
 // pro
 })
-export class AllPostsComponent  implements OnInit {
+export class AllPostsComponent  implements OnInit, OnDestroy {
   @Input() postBody?: string;
   @ViewChild(IonInfiniteScroll) infiniteScroll!: IonInfiniteScroll;
 
+  baseUserImageUrl: string = environment.apiUrl+'/feed/image/';
   faThumbsUp = faThumbsUp;
   faComment = faComment;
   allLoadedPosts: Post[] = [];
@@ -28,6 +31,11 @@ export class AllPostsComponent  implements OnInit {
   numberOfPosts = 5;
   skipPosts = 0;
   userId$ = new BehaviorSubject<number>(0)
+  // userId!: number;
+  private userImagePathsubscription!: Subscription;
+  private userSubscription!: Subscription;
+  userFullImagePath: string = '';
+  userFullName: string = '';
 
   constructor(
     private postService: PostService,
@@ -37,11 +45,23 @@ export class AllPostsComponent  implements OnInit {
 
   ngOnInit() {
     this.getPosts(false);
-    this.authService.userId.pipe(
-      take(1)).subscribe((userId: number ) => {
-        this.userId$.next(userId);
+    this.authService.userId.pipe(take(1)).subscribe((userId: number) => this.userId$.next(userId));
+    this.userSubscription = this.authService.userStream.subscribe((user: User) => {
+      this.allLoadedPosts.forEach((post: Post) => {
+        if (post.author.id === user.id)
+          post.author.imagePath = user.imagePath
       })
+    })
+    this.userImagePathsubscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath );
+    this.authService.userFullName.pipe(take(1)).subscribe((userFullName: string) => this.userFullName = userFullName);
   }
+
+  ngOnDestroy(): void {
+    this.userImagePathsubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
+  }
+
+  
 
   ngOnChanges(changes: SimpleChanges){    //Detect the input variable changes
     const postBody = changes['postBody'].currentValue;
