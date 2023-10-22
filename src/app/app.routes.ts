@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { roleManagerGuard } from './auth/guards/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'home',
-    canMatch: [roleManagerGuard],
+    canMatch: [AuthGuard],
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
   {
@@ -15,5 +15,10 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
+  },
+  {
+    path: ':id',
+    canMatch: [AuthGuard],
+    loadComponent: () => import('./home/components/connection-profile/connection-profile.component').then((m) => m.ConnectionProfileComponent),
   },
 ];
