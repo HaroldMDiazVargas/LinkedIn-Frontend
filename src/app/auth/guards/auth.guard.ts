@@ -3,7 +3,7 @@ import { CanMatchFn, Route, Router } from '@angular/router';
 import { take, switchMap, of, tap, map } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-export const roleManagerGuard: CanMatchFn = (route, segments) => {
+export const AuthGuard: CanMatchFn = (route, segments) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
