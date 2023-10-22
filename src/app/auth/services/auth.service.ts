@@ -165,7 +165,7 @@ export class AuthService {
         Preferences.remove({
           key: 'user'
         })
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/auth'], { replaceUrl: true });    //clear browser history app for bug take(1) or use ionicLifeCycle!
       })
     );
   }
