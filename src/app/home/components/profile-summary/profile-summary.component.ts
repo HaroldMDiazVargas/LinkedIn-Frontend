@@ -38,8 +38,11 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
   };
 
   userFullName: string = '';
+  userFullName$ = new BehaviorSubject<string>('')
   userFullImagePath: string = '';
+  private userImagePathsubscription!: Subscription;
   private subscriptions: Subscription[] = [];  //Do this to enable unsubscribe
+
 
 
   constructor(
@@ -51,13 +54,18 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
       file: new FormControl(null)
     })
 
-    this.subscriptions.push(this.auth.userRole.subscribe((rol: Role) => this.bannerColors = this.getBannerColors(rol)));
-    this.subscriptions.push(this.auth.userFullName.subscribe((userFullName: string) => this.userFullName = userFullName));
-    this.subscriptions.push(this.auth.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )); 
+    this.auth.userRole.pipe(take(1)).subscribe((rol: Role) => this.bannerColors = this.getBannerColors(rol));
+    this.auth.userFullName.pipe(take(1)).subscribe((userFullName: string) => {      //Take(1) because this name will not change until the next refresh
+      this.userFullName = userFullName;
+      this.userFullName$.next(userFullName);
+    })
+    this.userImagePathsubscription = this.auth.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath );
+
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.userImagePathsubscription.unsubscribe();
+    // this.subscriptions.forEach(sub => sub.unsubscribe());
   }
   
   private getBannerColors(role: Role): BannerColors{

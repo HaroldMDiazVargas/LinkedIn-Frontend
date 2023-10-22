@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Post } from 'src/app/home/models/Post';
 
@@ -14,7 +14,7 @@ import { Post } from 'src/app/home/models/Post';
   imports: [IonicModule, FormsModule]
 })
 export class ModalComponent  implements OnInit, OnDestroy {
-  private subscriptions: Subscription[] = [];
+  private userImagePathsubscription!: Subscription;
   userFullImagePath: string = '';
   userFullName: string = '';
   body: string = '';
@@ -28,12 +28,12 @@ export class ModalComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.body = this.postToUpdate ? this.postToUpdate.body : '';
-    this.subscriptions.push(this.authService.userFullName.subscribe((userFullName: string) => this.userFullName = userFullName));
-    this.subscriptions.push(this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )); 
+    this.userImagePathsubscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath )
+    this.authService.userFullName.pipe(take(1)).subscribe((userFullName: string) => this.userFullName = userFullName);
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.userImagePathsubscription.unsubscribe();
   }
 
   onPost() {
