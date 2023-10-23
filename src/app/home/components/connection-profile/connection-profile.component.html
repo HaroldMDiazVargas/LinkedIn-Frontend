@@ -1,4 +1,35 @@
-<app-header></app-header>
-<p>
-  connection-profile works!
-</p>
+<!-- <ion-content> -->
+
+<ion-content>
+  <ion-card class="profile">
+    <div class="backdrop" [style.background]="(bannerService.bannerColors | async)?.colorTwo">
+      <div class="background-one" [style.background]="(bannerService.bannerColors | async)?.colorOne"></div>
+      <div class="half-ellipse" [style.background]="(bannerService.bannerColors | async)?.colorOne"></div>
+      <div class="background-two" [style.background]="(bannerService.bannerColors | async)?.colorTwo"></div>
+      <div class="background-three" [style.background]="(bannerService.bannerColors | async)?.colorThree"></div>
+    </div>
+    <ion-card-header class="ion-text-center profile__header">
+      <ion-avatar class="ion-margin-auto profile__avatar">
+        <ion-img
+        alt="Silhouette of a person's head" *ngIf="userFullImagePath" [src]="userFullImagePath"
+        ></ion-img>
+      </ion-avatar>
+      <ion-card-title class="profile__header-title" *ngIf="userFullName">{{ userFullName }}</ion-card-title>
+      <ion-card-subtitle class="profile__header-subtitle">Software Developer</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content class="profile__interact">
+      <ion-button class="profile__interact-btn" shape="round" color="primary" size="small">
+        <span>Accept Request</span>
+      </ion-button>
+      <ion-button class="profile__interact-btn" fill="outline" shape="square" color="primary" size="small">
+        <ion-icon name="lock-closed"></ion-icon>
+        <span>Message</span>
+      </ion-button>
+      <ion-button class="profile__interact-btn" fill="outline" shape="round" color="primary" size="small">
+        <span>More</span>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

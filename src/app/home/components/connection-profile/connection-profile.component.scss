@@ -1,0 +1,102 @@
+@use "src/styles/utils" as u;
+
+.profile {
+    width: 50%;
+    max-width: u.rem(1128px);
+    margin: u.rem(20px) auto 0;
+
+    &__header{
+        margin-top: u.rem(-90px);
+        margin-left: u.rem(10px);
+        align-items: flex-start;
+        &-title{
+            margin-top: u.rem(10px);
+            font-size: clamp(u.rem(10px), u.rem(5px) + 2vw, u.rem(20px));
+        }
+        &-subtitle{
+            margin-top: u.rem(2px);
+            font-size: clamp(u.rem(8px), u.rem(2px) + 2vw, u.rem(14px));
+        }
+
+        @include u.breakpoint-down(small) {
+            margin-top: u.rem(-45px);
+        }
+
+
+    }
+    &__avatar {
+        width: u.rem(100px);
+        height: u.rem(100px);
+        border: 2px solid var(--ion-color-primary-contrast);
+        box-shadow: inset 0px 0px 0px 10px var(--ion-color-primary-contrast);
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include u.breakpoint-down(small) {
+            width: u.rem(60px);
+            height: u.rem(60px);
+        }
+    }
+
+    &__interact {
+        &-btn {
+            height: u.rem(35px);
+            font-size: u.rem(12px);
+            span{
+                text-transform: lowercase;
+                padding: u.rem(5px) u.rem(10px);
+                font-weight: 600;
+
+                &::first-letter{
+                    text-transform: uppercase;
+                }
+              
+
+            }
+            ion-icon {
+                @include u.breakpoint-down(small) {
+                    font-size: u.rem(15px);
+                }    
+            }
+            @include u.breakpoint-down(small) {
+                height: u.rem(25px);
+                font-size: u.rem(8px);
+            }
+        }
+
+    }
+
+}
+
+.backdrop {
+    height: u.rem(150px);
+    display: flex;
+
+    .background-one {
+        width: 70%;
+        height: 100%;
+    }
+
+    .half-ellipse {
+        border-radius: 0 100% 100% 0 / 100%;
+        width: u.rem(30px);
+        height: 100%;
+    }
+
+    .background-two {
+        width: 5%;
+        height: 100%;
+    }
+    .background-three {
+        flex-grow: 1;
+        height: 100%;
+    }
+
+    @include u.breakpoint-down(small) {
+        height: u.rem(80px);
+    }
+    // @include u.breakpoint-down(exSmall) {
+    //     display: none;
+    // }
+}
