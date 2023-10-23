@@ -36,7 +36,7 @@ export class AuthPage implements OnInit {
         password
       }).subscribe({
         next: (result) => {
-          this.router.navigate(['/home'])
+          this.router.navigate(['/private'])
         }
       })
     }

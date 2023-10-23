@@ -1,12 +1,16 @@
 <ion-card class="post" *ngFor="let post of allLoadedPosts" >
     <ion-card-header class="header">
-        <ion-avatar class="header__avatar">
-            <ion-img
-            alt="Silhouette of a person's head" [src]="post.author.imagePath ? baseUserImageUrl+post.author.imagePath : baseUserImageUrl+'avatar.svg'"
-            ></ion-img>
-        </ion-avatar>
+        <a [routerLink]="['/private', post.author.id]">
+            <ion-avatar class="header__avatar">
+                <ion-img
+                alt="Silhouette of a person's head" [src]="post.author.imagePath ? baseUserImageUrl+post.author.imagePath : baseUserImageUrl+'avatar.svg'"
+                ></ion-img>
+            </ion-avatar>
+        </a>
         <div class="ion-margin-top header__info">
-            <ion-card-title class="header__title">{{ post.author.firstName }} {{ post.author.lastName }}</ion-card-title>
+            <a [routerLink]="['/private', post.author.id]">
+                <ion-card-title class="header__title">{{ post.author.firstName }} {{ post.author.lastName }}</ion-card-title>
+            </a>
             <ion-card-subtitle class="header__subtitle">
                 <div class="header__subtitle-stats">9.999.999 followers</div>
                 <div class="header__subtitle-date">

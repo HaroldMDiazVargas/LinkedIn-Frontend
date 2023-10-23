@@ -10,13 +10,14 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ModalComponent } from '../start-post/modal/modal.component';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/auth/models';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-posts',
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.scss'],
   standalone: true,
-  imports: [IonicModule, FontAwesomeModule, CommonModule],
+  imports: [IonicModule, FontAwesomeModule, CommonModule, RouterModule],
 // pro
 })
 export class AllPostsComponent  implements OnInit, OnDestroy {
