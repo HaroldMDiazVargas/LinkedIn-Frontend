@@ -8,6 +8,7 @@ import { ConnectionProfileService } from '../../services/connection-profile.serv
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { User } from 'src/app/auth/models';
 import { Observable, map, of, switchMap, take } from 'rxjs';
+import { FriendRequestStatus, FriendRequest_Status } from '../../models/FriendRequest';
 
 @Component({
   selector: 'app-connection-profile',
@@ -19,7 +20,8 @@ import { Observable, map, of, switchMap, take } from 'rxjs';
 export class ConnectionProfileComponent  implements OnInit {
   user!: User;
   baseUserImageUrl: string = environment.apiUrl+'/feed/image/';
-  bannerColors: BannerColors = {} as BannerColors
+  bannerColors: BannerColors = {} as BannerColors;
+  friendRequestStatus: FriendRequest_Status = {} as FriendRequest_Status;
 
   constructor(
     public bannerService: BannerColorService,
@@ -31,6 +33,11 @@ export class ConnectionProfileComponent  implements OnInit {
     this.getUser().pipe(take(1)).subscribe((user: User) => {
       this.bannerColors = this.bannerService.getBannerColors(user.role);
       this.user = user;
+    });
+
+    this.getFriendRequestStatus().pipe(take(1)).subscribe((friendRequestStatus: FriendRequestStatus) => {
+      console.log(friendRequestStatus)
+      this.friendRequestStatus = friendRequestStatus.status;
     })
   }
 
@@ -38,9 +45,18 @@ export class ConnectionProfileComponent  implements OnInit {
     return this.getUserIdFromUrl().pipe(
       take(1),
       switchMap((userId: number) => {
-        return this.connectionService.getConnectionUser(userId)
+        return this.connectionService.getConnectionUser(userId);
       })
     )
+  }
+  
+  getFriendRequestStatus(): Observable<FriendRequestStatus>{
+    return this.getUserIdFromUrl().pipe(
+      take(1),
+      switchMap((userId: number) => {
+        return this.connectionService.getFriendRequestStatus(userId)
+      })
+      )
   }
 
   private getUserIdFromUrl(): Observable<number>{
@@ -48,5 +64,6 @@ export class ConnectionProfileComponent  implements OnInit {
       map((params) => parseInt(params['id']))
     )
   }
+
 
 }

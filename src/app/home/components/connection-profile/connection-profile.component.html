@@ -19,9 +19,17 @@
     </ion-card-header>
 
     <ion-card-content class="profile__interact">
-      <ion-button class="profile__interact-btn" shape="round" color="primary" size="small">
-        <span>Accept Request</span>
-      </ion-button>
+      <ng-container *ngIf="['not-sent', 'pending', 'waiting-for-current-user-response'].includes(friendRequestStatus)">
+        <ion-button 
+          class="profile__interact-btn" 
+          shape="round" 
+          color="primary" 
+          size="small"
+          [disabled]="['pending'].includes(friendRequestStatus)"
+        >
+          <span>{{ friendRequestStatus === 'waiting-for-current-user-response' ? 'Accept request' : 'Connect' }}</span>
+        </ion-button>
+      </ng-container>
       <ion-button class="profile__interact-btn" fill="outline" shape="square" color="primary" size="small">
         <ion-icon name="lock-closed"></ion-icon>
         <span>Message</span>
