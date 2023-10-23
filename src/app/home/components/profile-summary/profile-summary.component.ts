@@ -7,15 +7,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { fromBuffer } from 'file-type/core';
 import { FileTypeResult } from 'file-type';
 import { CommonModule } from '@angular/common';
+import { BannerColorService, BannerColors } from '../../services/banner-color.service';
 
 type validFileExtension = 'png' | 'jpg' | 'jpeg';
 type validMimeType = 'image/png' | 'image/jpg' | 'image/jpeg';
 
-type BannerColors = {
-  colorOne: string;
-  colorTwo: string;
-  colorThree: string;
-}
 
 @Component({
   selector: 'app-profile-summary',
@@ -31,22 +27,16 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
   validFileExtensions: validFileExtension[] = ['png', 'jpg', 'jpeg'];
   validMimeTypes: validMimeType[] = ['image/png', 'image/jpg', 'image/jpeg'];
 
-  bannerColors: BannerColors = {
-    colorOne: '#a0b4b7',
-    colorTwo: '#dbe7e9',
-    colorThree: '#bfd3d6',
-  };
-
   userFullName: string = '';
   userFullName$ = new BehaviorSubject<string>('')
   userFullImagePath: string = '';
   private userImagePathsubscription!: Subscription;
-  private subscriptions: Subscription[] = [];  //Do this to enable unsubscribe
-
-
+  // private subscriptions: Subscription[] = [];  //Do this to enable unsubscribe
+  // bannerColors: BannerColors = {} as BannerColors;
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    public bannerService: BannerColorService
   ) { }
 
   ngOnInit() {
@@ -54,7 +44,6 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
       file: new FormControl(null)
     })
 
-    this.auth.userRole.pipe(take(1)).subscribe((rol: Role) => this.bannerColors = this.getBannerColors(rol));
     this.auth.userFullName.pipe(take(1)).subscribe((userFullName: string) => {      //Take(1) because this name will not change until the next refresh
       this.userFullName = userFullName;
       this.userFullName$.next(userFullName);
@@ -68,30 +57,6 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
     // this.subscriptions.forEach(sub => sub.unsubscribe());
   }
   
-  private getBannerColors(role: Role): BannerColors{
-    switch (role) {
-      case 'admin':
-        return {
-          colorOne: '#daa520',
-          colorTwo: '#f0e68c',
-          colorThree: '#fafad2',
-        }
-      case 'premium':
-        return {
-          colorOne: '#bc8f8f',
-          colorTwo: '#c09999',
-          colorThree: '#ddadaf',
-        }        
-    
-      default:
-        return {
-          colorOne: '#a0b4b7',
-          colorTwo: '#dbe7e9',
-          colorThree: '#bfd3d6',
-        }
-    }
-
-  }
 
   onFileSelect(event: Event): void{
     const file: File | undefined= (event.target as HTMLInputElement).files?.[0];
