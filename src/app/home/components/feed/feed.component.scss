@@ -1,0 +1,61 @@
+@use "src/styles/utils" as u;
+
+.content-container {
+    display: grid;
+    grid-template-columns: 25% 45% 30% ;
+    // width: clamp(u.rem(280px), 100vw, u.rem(1128px));
+    width: 100%;
+    max-width: u.rem(1128px);
+    margin: u.rem(48px) auto 0;
+    @include u.breakpoint-down(medium) {
+        grid-template-columns: 65% 35% ;
+    }
+    @include u.breakpoint-down(exSmall) {
+        grid-template-columns: 100%;
+    }
+}
+
+app-profile-summary {
+    @include u.breakpoint-down(medium) {
+        display: none;
+    }
+}
+
+app-advertising{
+    @include u.breakpoint-down(exSmall) {
+        display: none;
+    }
+}
+
+
+.filter {
+    display: flex;
+    flex-wrap: nowrap;
+    // width: $width-card;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    &__divider{
+        flex-grow: 1;
+        flex-basis: 0;
+        height: 1px;
+        background-color: #c4c4c4;
+        margin-right: u.rem(5px);
+    }
+
+    &__menu{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+        margin-right: u.rem(5px);
+    }
+
+    &__icon{
+        font-size: u.rem(13px);
+    }
+}
+
+ion-content {
+    --background: none
+}
