@@ -10,17 +10,14 @@ export type BannerColors = {
   colorThree: string;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class BannerColorService {
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor() { }
   
-  private getBannerColors(role: Role): BannerColors{
+  getBannerColors(role: Role): BannerColors{
     switch (role) {
       case 'admin':
         return {
@@ -42,15 +39,6 @@ export class BannerColorService {
           colorThree: '#bfd3d6',
         }
     }
-  }
-
-  get bannerColors(): Observable<BannerColors>{
-    return this.authService.userRole.pipe(
-      take(1),
-      switchMap((role: Role) => {
-        return of(this.getBannerColors(role))
-      })
-    )
   }
 
 }

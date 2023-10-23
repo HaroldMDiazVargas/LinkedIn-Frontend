@@ -32,7 +32,7 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
   userFullImagePath: string = '';
   private userImagePathsubscription!: Subscription;
   // private subscriptions: Subscription[] = [];  //Do this to enable unsubscribe
-  // bannerColors: BannerColors = {} as BannerColors;
+  bannerColors: BannerColors = {} as BannerColors;
 
   constructor(
     private auth: AuthService,
@@ -44,6 +44,7 @@ export class ProfileSummaryComponent  implements OnInit, OnDestroy {
       file: new FormControl(null)
     })
 
+    this.auth.userRole.pipe(take(1)).subscribe((role: Role) => this.bannerColors =  this.bannerService.getBannerColors(role));
     this.auth.userFullName.pipe(take(1)).subscribe((userFullName: string) => {      //Take(1) because this name will not change until the next refresh
       this.userFullName = userFullName;
       this.userFullName$.next(userFullName);

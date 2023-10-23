@@ -1,9 +1,9 @@
 <ion-card class="profile-summary">
-  <div class="backdrop" [style.background]="(bannerService.bannerColors | async)?.colorTwo">
-    <div class="background-one" [style.background]="(bannerService.bannerColors | async)?.colorOne"></div>
-    <div class="half-ellipse" [style.background]="(bannerService.bannerColors | async)?.colorOne"></div>
-    <div class="background-two" [style.background]="(bannerService.bannerColors | async)?.colorTwo"></div>
-    <div class="background-three" [style.background]="(bannerService.bannerColors | async)?.colorThree"></div>
+  <div class="backdrop" [style.background]="bannerColors.colorTwo">
+    <div class="background-one" [style.background]="bannerColors.colorOne"></div>
+    <div class="half-ellipse" [style.background]="bannerColors.colorOne"></div>
+    <div class="background-two" [style.background]="bannerColors.colorTwo"></div>
+    <div class="background-three" [style.background]="bannerColors.colorThree"></div>
   </div>
 
     <ion-card-header class="ion-text-center profile-summary__header">
