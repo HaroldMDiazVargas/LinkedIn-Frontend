@@ -1,19 +1,4 @@
 <app-header></app-header>
 <ion-content>
-    <div class="content-container">
-        <app-profile-summary></app-profile-summary>
-        <div>
-            <app-start-post (create)="onCreatePost($event)"></app-start-post>
-            <div class="filter">
-                <div class="filter__divider"></div>
-                <div class="filter__menu">
-                    <span>Sort by: </span>
-                    <span>Main</span>
-                    <ion-icon name="caret-down" class="filter__icon"></ion-icon>
-                </div>
-            </div>
-            <app-all-posts [postBody]="body"></app-all-posts>
-        </div>
-        <app-advertising></app-advertising>
-    </div>
+    <ion-router-outlet></ion-router-outlet>
 </ion-content>
