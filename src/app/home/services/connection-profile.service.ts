@@ -30,4 +30,8 @@ export class ConnectionProfileService {
   respondFriendRequest(id: number, status: FriendRequest_Status){
     return this.http.put<FriendRequestStatus | { error: string }>(`${this.baseUrl}friend-request/${id}`, { status }, { withCredentials: true })
   }
+  
+  getMyFriendRequestReceived(){
+    return this.http.get<FriendRequest[]>(`${this.baseUrl}friend-request/me/received-requests`, { withCredentials: true});
+  }
 }
