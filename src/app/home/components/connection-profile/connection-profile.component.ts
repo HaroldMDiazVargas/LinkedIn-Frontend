@@ -9,6 +9,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { User } from 'src/app/auth/models';
 import { Observable, map, of, switchMap, take } from 'rxjs';
 import { FriendRequest, FriendRequestStatus, FriendRequest_Status } from '../../models/FriendRequest';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-connection-profile',
@@ -18,7 +19,8 @@ import { FriendRequest, FriendRequestStatus, FriendRequest_Status } from '../../
   imports: [HeaderComponent, CommonModule, IonicModule, RouterModule]
 })
 export class ConnectionProfileComponent  implements OnInit {
-  user!: User;
+  userProfile!: User;
+  currentUser!: User;
   baseUserImageUrl: string = environment.apiUrl+'/feed/image/';
   bannerColors: BannerColors = {} as BannerColors;
   friendRequestStatus: FriendRequest = {} as FriendRequest;
@@ -26,18 +28,25 @@ export class ConnectionProfileComponent  implements OnInit {
   constructor(
     public bannerService: BannerColorService,
     private connectionService: ConnectionProfileService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.getUser().pipe(take(1)).subscribe((user: User) => {
       this.bannerColors = this.bannerService.getBannerColors(user.role);
-      this.user = user;
+      this.userProfile = user;
     });
 
     this.getFriendRequestStatus().pipe(take(1)).subscribe((friendRequestStatus: FriendRequest) => {
       console.log(friendRequestStatus)
       this.friendRequestStatus = friendRequestStatus;
+    });
+
+    this.authService.userStream.pipe(
+      take(1)
+    ).subscribe((user: User) => {
+        this.currentUser = user;
     })
   }
 
@@ -66,7 +75,7 @@ export class ConnectionProfileComponent  implements OnInit {
       this.friendRequestStatus.status = status;
     }
     else {
-      this.connectionService.sendFriendRequest(this.user.id).pipe(take(1)).subscribe();
+      this.connectionService.sendFriendRequest(this.userProfile.id).pipe(take(1)).subscribe();
       this.friendRequestStatus.status = 'pending';
     }
   }
