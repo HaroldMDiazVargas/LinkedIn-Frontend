@@ -16,23 +16,27 @@ import { FriendRequestPopoverComponent } from './friend-request-popover/friend-r
 })
 export class HeaderComponent  implements OnInit, OnDestroy {
   friendRequests: FriendRequest[] = [];
+  friendRequestsSubscription!: Subscription;
   private userImagePathsubscription!: Subscription;
   userFullImagePath: string = '';
+
   
   constructor(
     private authService: AuthService,
-    private connectionService: ConnectionProfileService,
+    public connectionService: ConnectionProfileService,
   ) { }
 
   ngOnInit() {
     this.userImagePathsubscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath );
 
-    this.connectionService.getMyFriendRequestReceived().pipe(take(1)).subscribe((friendRequests: FriendRequest[]) => {
-      this.friendRequests = friendRequests
+    this.friendRequestsSubscription = this.connectionService.getMyFriendRequestReceived().subscribe((friendRequests: FriendRequest[]) => {
+      this.friendRequests = friendRequests;
+      this.connectionService.friendRequests = friendRequests;                                   //Global property on centralize service/ ALSO: we could do using Input props and pass to other component!
     });
   }
 
   ngOnDestroy(): void {
     this.userImagePathsubscription.unsubscribe();
+    this.friendRequestsSubscription.unsubscribe();
   }
 }

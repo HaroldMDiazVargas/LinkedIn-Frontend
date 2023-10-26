@@ -1,14 +1,14 @@
 <ion-card class="requests">
   <ion-card-content class="requests__users">
-    <div class="requests__user">
+    <div class="requests__user" *ngFor="let request of connectionProfileService.friendRequests">
       <ion-avatar class="requests__avatar">
         <ion-img
-        alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"
+        alt="Silhouette of a person's head" [src]="request.creator.imagePath ? baseUserImageUrl+request.creator.imagePath : baseUserImageUrl+'avatar.svg'"
         ></ion-img>
       </ion-avatar>
   
       <ion-card-subtitle class="requests__info">
-        <p class="requests__name">Salomón Díaz</p>
+        <p class="requests__name">{{ request.creator.firstName }} {{ request.creator.lastName }}</p>
         <p class="requests__profession">Lead UX UI | Product Designer | Mentor UX | Podcaster</p>
         <ion-button  shape="round" color="primary" size="small">
           Accept
@@ -19,7 +19,7 @@
       </ion-card-subtitle>
     </div>
 
-    <div class="requests__user">
+    <!-- <div class="requests__user">
 
       <ion-avatar class="requests__avatar">
         <ion-img
@@ -37,7 +37,7 @@
           Decline
         </ion-button>
       </ion-card-subtitle>
-    </div>
+    </div> -->
 
   </ion-card-content>
 

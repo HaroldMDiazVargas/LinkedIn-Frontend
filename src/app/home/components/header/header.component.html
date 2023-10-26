@@ -13,7 +13,7 @@
                 <h3 class="header__menu-text">Home</h3>
               </a>  
           </ion-col>
-          <ion-col id="trigger-friend-request" class="header__menu-col">
+          <ion-col [id]="this.connectionService.friendRequests.length > 0 ? 'trigger-friend-request' : ''" class="header__menu-col">
               <ion-popover class="request-popover" dismissOnSelect="true" trigger="trigger-friend-request"  show-backdrop="false" triggerAction="click"
                           alignment="center">
                 <ng-template>
@@ -21,7 +21,9 @@
                 </ng-template>
               </ion-popover>
               <ion-icon name="people"></ion-icon>
-              <ion-badge color="danger" class="notification-badge notification-badge--offset">{{ friendRequests.length }}</ion-badge>
+              <ion-badge color="danger" class="notification-badge notification-badge--offset">
+                {{ this.connectionService.friendRequests.length }}
+              </ion-badge>
               <div class="header__menu-text">My Network</div>
           </ion-col>
           <ion-col class="header__menu-col">
