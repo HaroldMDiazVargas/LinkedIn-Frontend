@@ -26,6 +26,12 @@
         width: u.rem(80px);
         text-align: center;
         cursor: pointer;
+
+        &__house {
+            @include u.breakpoint-down(exSmall) {
+                display: none;
+              }
+        }
     }
 
     &__menu-text {
@@ -41,14 +47,19 @@
 }
 
 .notification-badge {
-    width: clamp(u.rem(8px), u.rem(5px) + 1vw, u.rem(12px));
-    height: clamp(u.rem(8px), u.rem(6px) + 1vw, u.rem(12px));
+    width: clamp(u.rem(7px), u.rem(5px) + 1vw, u.rem(12px));
+    height: clamp(u.rem(7px), u.rem(5px) + 1vw, u.rem(12px));
     font-size: clamp(u.rem(8px), u.rem(6px) + 1vw, u.rem(12px));;
     position: relative;
     bottom: u.rem(8px);
     right: u.rem(10px);
     border-radius: 100%;
     padding: u.rem(4px) u.rem(4px);
+
+    &--offset {
+        bottom: u.rem(9px);
+        right: u.rem(8px);
+    }
 }
 
 .notification-container {

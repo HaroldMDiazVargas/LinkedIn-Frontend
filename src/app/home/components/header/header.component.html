@@ -7,7 +7,7 @@
       <ion-searchbar color="tertiary" class="ion-hide-lg-down header__search-bar" placeholder="Search"></ion-searchbar>
       <ion-grid class="header__menu">
         <ion-row class="ion-justify-content-end">
-          <ion-col class="header__menu-col">
+          <ion-col class="header__menu-col header__menu-col__house">
               <a href="">
                 <ion-icon name="home"></ion-icon>
                 <h3 class="header__menu-text">Home</h3>
@@ -21,7 +21,7 @@
                 </ng-template>
               </ion-popover>
               <ion-icon name="people"></ion-icon>
-              <ion-badge color="danger" class="notification-badge">{{ friendRequests.length }}</ion-badge>
+              <ion-badge color="danger" class="notification-badge notification-badge--offset">{{ friendRequests.length }}</ion-badge>
               <div class="header__menu-text">My Network</div>
           </ion-col>
           <ion-col class="header__menu-col">
