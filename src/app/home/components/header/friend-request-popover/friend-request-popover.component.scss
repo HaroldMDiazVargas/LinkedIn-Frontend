@@ -1,0 +1,40 @@
+@use "src/styles/utils" as u;
+
+
+.requests {
+    &__user {
+        display: flex;
+        margin-bottom: u.rem(5px);
+    }
+    &__avatar {
+        width: u.rem(45px);
+        height: u.rem(45px);
+        // margin: auto 0;
+        margin: u.rem(10px) u.rem(5px) auto 0;
+        cursor: pointer;
+        @include u.breakpoint-down(exSmall) {
+            width: u.rem(35px);
+            height: u.rem(35px);
+        }
+    }
+
+    &__info {
+        max-width: u.rem(200px);
+        cursor: pointer;
+
+        ion-button {
+            font-size: u.rem(10px);
+        }
+    }
+
+    &__name {
+        font-weight: bold;
+        font-size: clamp(u.rem(6px), u.rem(3px) + 2vw, u.rem(13px));
+        padding: 0;
+        margin: 0;
+    }
+
+    &__profession {
+        font-size: clamp(u.rem(8px), u.rem(3px) + 1vw, u.rem(11px));
+    }
+}
