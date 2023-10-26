@@ -5,13 +5,14 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Subscription, take } from 'rxjs';
 import { ConnectionProfileService } from '../../services/connection-profile.service';
 import { FriendRequest } from '../../models/FriendRequest';
+import { FriendRequestPopoverComponent } from './friend-request-popover/friend-request-popover.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [PopoverComponent, IonicModule]
+  imports: [PopoverComponent, FriendRequestPopoverComponent, IonicModule]
 })
 export class HeaderComponent  implements OnInit, OnDestroy {
   friendRequests: FriendRequest[] = [];
