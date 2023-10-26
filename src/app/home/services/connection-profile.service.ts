@@ -9,6 +9,7 @@ import { FriendRequest, FriendRequestStatus, FriendRequest_Status } from '../mod
   providedIn: 'root'
 })
 export class ConnectionProfileService {
+  friendRequests: FriendRequest[] = [];
   private baseUrl: string = environment.apiUrl + '/user/';
   
   constructor(
