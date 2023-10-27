@@ -43,3 +43,8 @@ ion-popover {
 .item-divider {
     border: u.rem(1px) solid var(--ion-color-light-tint);
 }
+
+.request-popover {
+    --box-shadow: none;
+    margin-top: u.rem(10px);
+}
