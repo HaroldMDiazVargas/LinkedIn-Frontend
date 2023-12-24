@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post';
 import { environment } from 'src/environments/environment';
-import { take, tap } from 'rxjs';
+import { catchError, take, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class PostService {
 
   constructor(
     private http: HttpClient,
+    private erroHandlerService: ErrorHandlerService
     // private authService: AuthService
     ) { 
       // this.authService.getUserImageName().pipe(                                    //Use only for JWT logic, when localStorage data is not updated!
@@ -25,7 +27,14 @@ export class PostService {
   }
 
   getSelectedPosts(params: string){
-    return this.http.get<Post[]>(this.baseUrl + params, { withCredentials: true})
+    return this.http.get<Post[]>(this.baseUrl + params, { withCredentials: true}).pipe(
+      tap((posts: Post[]) => {
+        if (!posts.length) throw new Error('No posts to retrieve');
+      }),
+      catchError(
+        this.erroHandlerService.handleError<Post[]>('getSelectedPosts', [])
+      )
+    )
   }
 
   createPost(body: string){
