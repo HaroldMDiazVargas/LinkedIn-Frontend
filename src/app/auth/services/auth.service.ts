@@ -21,7 +21,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService: CookieService
+    // private cookieService: CookieService
   ) {}
   
   get isUserLoggedIn(): Observable<boolean>{
@@ -123,23 +123,23 @@ export class AuthService {
       }))
   }
 
-  isCookieInStorage(): Observable<boolean> {        //IS NOT WORKING, NOT POSSIBLE FROM FRONTEND - COOKIE IS HTTPS ONLY. USE FOR JWT Approach
-    return from(this.cookieService.get('connect.sid')).pipe(
-      switchMap((cookie) => {
-        return from(Preferences.get({
-          key: 'user'
-        })).pipe(
-          map(data => {
-            if (!cookie) return false;
-            if (data.value)
-              this.user$.next(JSON.parse(data.value) as User)
-            return true;
-          })
-        )
-      })
+  // isCookieInStorage(): Observable<boolean> {        //IS NOT WORKING, NOT POSSIBLE FROM FRONTEND - COOKIE IS HTTPS ONLY. USE FOR JWT Approach
+  //   return from(this.cookieService.get('connect.sid')).pipe(
+  //     switchMap((cookie) => {
+  //       return from(Preferences.get({
+  //         key: 'user'
+  //       })).pipe(
+  //         map(data => {
+  //           if (!cookie) return false;
+  //           if (data.value)
+  //             this.user$.next(JSON.parse(data.value) as User)
+  //           return true;
+  //         })
+  //       )
+  //     })
       
-    );
-  }
+  //   );
+  // }
 
   checkAuthentication(): Observable<boolean>{
     return this.http.get<ICheckAuth>(this.baseUrl+'/check', { withCredentials: true }).pipe(
