@@ -19,7 +19,10 @@ export const routes: Routes = [
       {
         path: ':id',
         loadComponent: () => import('./home/components/connection-profile/connection-profile.component').then((m) => m.ConnectionProfileComponent),
-
+      },
+      {
+        path: 'chat/connections',
+        loadComponent: () => import('./home/components/chat/chat.component').then((m) => m.ChatComponent),
       }
     ]
   },
@@ -30,6 +33,10 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
+    loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
+  },
+  {
+    path: '*',
     loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
   }
 ];

@@ -1,0 +1,85 @@
+<ion-content>
+  <ion-card class="container">
+    <div class="connection">
+      <div class="top-panel">
+        <ion-text class="top-panel__heading top-panel__heading--hideSmall" color="dark">Contacts</ion-text>
+        <ion-button   class="top-panel__icon"  shape="round" color="dark" fill="clear" size="small">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="connection__friends">
+        <div *ngFor="let friend of friends" >
+
+          <div class="connection__friend" >
+            <a>
+                <ion-avatar class="connection__friend-img">
+                    <ion-img
+                    alt="Silhouette of a person's head"
+                    ></ion-img>
+                </ion-avatar>
+            </a>
+            <span class="connection__friend-name">{{ friend.firstName }} {{ friend.lastName }}</span>
+          </div>
+          <div 
+                *ngIf="friend.id !== friends?.[friends.length - 1]?.id" 
+                class="item-divider">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat">
+      <div class="top-panel">
+        <ion-text class="top-panel__heading" color="dark">Messages</ion-text>
+        <ion-button shape="round" color="dark" fill="clear" size="small">
+          <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="chat__messages">
+        <p *ngFor="let message of messages">{{ message }}</p>
+      </div>
+      <form 
+      #form="ngForm"
+      (ngSubmit)="onSubmit()"
+      >
+      <ion-item class="chat__input ion-no-padding" >
+        <ion-grid>
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-col>
+              <ion-textarea name="message" ngModel class="chat__input-textarea" required></ion-textarea>
+            </ion-col>
+            <ion-col size="auto">
+              <ion-button [disabled]="!form.valid" type="submit">
+                <ion-icon name="send-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </form>
+    </div>  
+  </ion-card>
+</ion-content>
+
+
+
+
+<!-- <div>
+  <span>Chat room</span>
+  <p *ngFor="let message of messages">{{ message }}</p>
+  <form 
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+    >
+
+    <ion-item>
+      <ion-input
+      ngModel type="text" name="message" required>
+      </ion-input>
+    </ion-item>
+
+    <ion-button [disabled]="!form.valid" type="submit" shape="round" expand="block">
+      send message
+    </ion-button>
+
+  </form>
+</div> -->

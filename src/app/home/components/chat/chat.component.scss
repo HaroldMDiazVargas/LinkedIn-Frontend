@@ -1,0 +1,118 @@
+@use "src/styles/utils" as u;
+
+
+.container {
+    max-width: u.rem(800px);
+    width: auto;
+    display: flex;
+    box-shadow: none;
+    border: u.rem(1px) solid #e1e1e1;
+    margin: auto;
+    margin-top: u.rem(100px);
+    max-height: 70vh;
+}
+
+.connection {
+    overflow-y: auto;
+    border-right: u.rem(1px) solid #e1e1e1;
+    border-bottom: u.rem(1px) solid #e1e1e1;
+
+
+    &__friend {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: u.rem(10px);
+        margin-top: u.rem(10px);
+        justify-content: center;
+        align-items: center;
+
+        @include u.breakpoint(medium){
+            margin-left: u.rem(10px);
+            margin-right: u.rem(10px);
+        }
+
+        &-name {
+            display: none;
+            @include u.breakpoint(medium){
+                display: block;
+                margin-left: u.rem(5px);
+            }
+        }
+
+        &-img {
+            width: u.rem(40px);
+            height: u.rem(40px);
+
+            @include u.breakpoint(medium){
+                width: u.rem(50px);
+                height: u.rem(50px);
+
+            }
+        }
+    }
+
+    @include u.breakpoint-down(small) {
+        width: 20%;
+    }
+}
+
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: u.rem(40px);
+    border-bottom: u.rem(1px) solid #e1e1e1;
+    &__heading {
+        padding: u.rem(10px);
+        font-size: clamp(u.rem(6px), u.rem(5px) + 2vw, u.rem(13px));
+        font-weight: 500;
+
+        &--hideSmall{
+            display: none;
+
+        }
+
+        @include u.breakpoint(medium){
+            display: block;
+        }
+    }
+    &__icon {
+        margin: auto;
+    }
+
+}
+
+ion-item.chat__input {
+    --inner-padding-end: 0;
+    --inner-padding-start: 0;
+
+}
+
+ion-textarea.chat__input-textarea {
+    --padding-botton: 0;
+    --padding-top: 0
+    height: 10px
+}
+
+.chat {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__input {
+        border-top: u.rem(1px) solid #e1e1e1;
+       
+        ion-button > ion-icon{
+            font-size: 20px;
+        }
+
+        ion-grid {
+            --ion-grid-padding: 0px;
+        }
+    }
+    &__messages{
+        height: 40vh;
+    }
+
+}
