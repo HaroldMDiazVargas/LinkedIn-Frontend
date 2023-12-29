@@ -36,7 +36,18 @@
         </ion-button>
       </div>
       <div class="chat__messages">
-        <p *ngFor="let message of messages">{{ message }}</p>
+        <!-- <p *ngFor="let message of messages">{{ message }}</p> -->
+        <div class="chat__message" *ngFor="let message of messages">
+          <a>
+            <ion-avatar class="connection__friend-img">
+                <ion-img
+                alt="Silhouette of a person's head"
+                [src]="userFullImagePath"
+                ></ion-img>
+            </ion-avatar>
+          </a>
+          <p>{{ message }}</p>
+        </div>
       </div>
       <form 
       #form="ngForm"

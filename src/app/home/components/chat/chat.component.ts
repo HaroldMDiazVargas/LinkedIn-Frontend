@@ -21,9 +21,12 @@ export class ChatComponent  implements OnInit, OnDestroy {
   messages: string[] = [];
   friends: User[] = [];
   baseUserImageUrl: string = environment.apiUrl+'/feed/image/';
+  private userImagePathsubscription!: Subscription;
+  userFullImagePath: string = '';
 
   constructor(
-    private chatService: ChatService
+    private chatService: ChatService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -35,10 +38,12 @@ export class ChatComponent  implements OnInit, OnDestroy {
       this.friends = friends;
     });
 
+    this.userImagePathsubscription = this.authService.userFullImagePath.subscribe((fullImagePath: string) => this.userFullImagePath = fullImagePath );
+
   }
 
   ngOnDestroy(): void {
-    
+    this.userImagePathsubscription.unsubscribe();
   }
 
   onSubmit(){
