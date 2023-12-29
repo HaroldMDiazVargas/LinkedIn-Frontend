@@ -15,6 +15,7 @@
                 <ion-avatar class="connection__friend-img">
                     <ion-img
                     alt="Silhouette of a person's head"
+                    [src]="friend.imagePath ? baseUserImageUrl+friend.imagePath : baseUserImageUrl+'avatar.svg'"
                     ></ion-img>
                 </ion-avatar>
             </a>
