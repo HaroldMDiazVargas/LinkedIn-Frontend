@@ -7,13 +7,14 @@ import { ConnectionProfileService } from '../../services/connection-profile.serv
 import { FriendRequest } from '../../models/FriendRequest';
 import { FriendRequestPopoverComponent } from './friend-request-popover/friend-request-popover.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [PopoverComponent, FriendRequestPopoverComponent, IonicModule, CommonModule]
+  imports: [PopoverComponent, FriendRequestPopoverComponent, IonicModule, CommonModule, RouterModule]
 })
 export class HeaderComponent  implements OnInit, OnDestroy {
   // countFriendRequests = new BehaviorSubject<number>(0);

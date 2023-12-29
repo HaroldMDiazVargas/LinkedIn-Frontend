@@ -1,14 +1,14 @@
 <ion-header class="ion-container ion-no-border header">
   <ion-toolbar>
     <div class="header__content">
-      <a href="" class="header__logo">
+      <a [routerLink]="['/private/home']" class="header__logo">
         <ion-icon color="primary" name="logo-linkedin" class="linkedin-logo"></ion-icon>
       </a>
       <ion-searchbar color="tertiary" class="ion-hide-lg-down header__search-bar" placeholder="Search"></ion-searchbar>
       <ion-grid class="header__menu">
         <ion-row class="ion-justify-content-end">
           <ion-col class="header__menu-col header__menu-col__house">
-              <a href="">
+              <a [routerLink]="['/private/home']">
                 <ion-icon name="home"></ion-icon>
                 <h3 class="header__menu-text">Home</h3>
               </a>  
@@ -28,7 +28,7 @@
             </a>
           </ion-col>
           <ion-col class="header__menu-col">
-            <a href="">
+            <a [routerLink]="['/private/chat/connections']">
               <ion-icon name="chatbox-ellipses"></ion-icon>
               <div class="header__menu-text">Messaging</div>  
             </a>
