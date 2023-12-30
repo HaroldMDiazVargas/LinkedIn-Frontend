@@ -31,6 +31,10 @@
             background-color: #e1e1e1;
         }
 
+        &--selected {
+            background-color: #e1e1e1;
+        }
+
         @include u.breakpoint(medium){
             padding-left: u.rem(10px);
             padding-right: u.rem(10px);

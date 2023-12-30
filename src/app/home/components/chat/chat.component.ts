@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { User } from 'src/app/auth/models';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
+import { ChatSocketService } from 'src/app/core/chat-socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -22,19 +23,22 @@ export class ChatComponent  implements OnInit, OnDestroy {
   friends: User[] = [];
   baseUserImageUrl: string = environment.apiUrl+'/feed/image/';
   private userImagePathsubscription!: Subscription;
+  private friendSubscription!: Subscription;
+  private messageSubscription!: Subscription;
   userFullImagePath: string = '';
+  selectedUser!: User;
 
   constructor(
     private chatService: ChatService,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.chatService.getNewMessage().subscribe((message: string) => {
+    this.messageSubscription = this.chatService.getNewMessage().subscribe((message: string) => {
       this.messages.push(message);
     });
 
-    this.chatService.getFriends().subscribe((friends: User[]) => {
+    this.friendSubscription = this.chatService.getFriends().subscribe((friends: User[]) => {
       this.friends = friends;
     });
 
@@ -44,6 +48,8 @@ export class ChatComponent  implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userImagePathsubscription.unsubscribe();
+    this.friendSubscription.unsubscribe();
+    this.messageSubscription.unsubscribe();
   }
 
   onSubmit(){
@@ -51,6 +57,10 @@ export class ChatComponent  implements OnInit, OnDestroy {
     if (!message) return;
     this.chatService.sendMessage(message);
     this.form.reset();
+  }
+
+  selectUser(user: User){
+    this.selectedUser = user;
   }
 
 }

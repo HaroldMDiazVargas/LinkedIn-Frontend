@@ -8,7 +8,7 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-import { SocketIoModule } from 'ngx-socket-io';
+// import { SocketIoModule } from 'ngx-socket-io';
 
 if (environment.production) {
   enableProdMode();
@@ -19,8 +19,8 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     importProvidersFrom(IonicModule.forRoot({})),
     importProvidersFrom(HttpClientModule),
-    importProvidersFrom(SocketIoModule.forRoot({ url: 'http://localhost:3000', options: {}}
-    )),
+    // importProvidersFrom(SocketIoModule.forRoot({ url: 'http://localhost:3000', options: {}}
+    // )),
     provideRouter(routes),
     provideAnimations(),
 

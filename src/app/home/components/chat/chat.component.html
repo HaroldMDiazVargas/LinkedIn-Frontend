@@ -10,7 +10,7 @@
       <div class="connection__friends">
         <div *ngFor="let friend of friends" >
 
-          <div class="connection__friend" >
+          <div class="connection__friend" (click)="selectUser(friend)" [ngClass]="{'connection__friend--selected': this?.selectedUser?.id === friend.id}">
             <a>
                 <ion-avatar class="connection__friend-img">
                     <ion-img
@@ -30,7 +30,7 @@
     </div>
     <div class="chat">
       <div class="top-panel">
-        <ion-text class="top-panel__heading" color="dark">Messages</ion-text>
+        <ion-text class="top-panel__heading" color="dark">{{ this?.selectedUser?.firstName ?? 'Messages'}} {{ this?.selectedUser?.lastName ?? '' }}</ion-text>
         <ion-button shape="round" color="dark" fill="clear" size="small">
           <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
         </ion-button>
