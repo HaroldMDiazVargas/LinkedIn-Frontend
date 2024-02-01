@@ -2,7 +2,9 @@
   <div class="content-container">
       <app-profile-summary></app-profile-summary>
       <div>
-          <app-start-post (create)="onCreatePost($event)"></app-start-post>
+          <!-- REPLACE OUTPUT WITH REDUX PATTERN -->
+          <!-- <app-start-post (create)="onCreatePost($event)"></app-start-post> --> 
+          <app-start-post></app-start-post> 
           <div class="filter">
               <div class="filter__divider"></div>
               <div class="filter__menu">
@@ -11,7 +13,9 @@
                   <ion-icon name="caret-down" class="filter__icon"></ion-icon>
               </div>
           </div>
-          <app-all-posts [postBody]="body"></app-all-posts>
+          <app-all-posts></app-all-posts>
+          <!-- REPLACE INPUT BY REDUX PATTERN -->
+          <!-- <app-all-posts [postBody]="body"></app-all-posts> -->
       </div>
       <app-advertising></app-advertising>
   </div>

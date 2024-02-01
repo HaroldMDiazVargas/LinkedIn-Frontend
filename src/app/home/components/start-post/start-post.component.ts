@@ -6,6 +6,8 @@ import { ModalComponent } from './modal/modal.component';
 import { PostService } from '../../services/post.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Store } from '@ngrx/store';
+import { postsActions } from '../../store/actions';
 
 @Component({
   selector: 'app-start-post',
@@ -23,7 +25,8 @@ export class StartPostComponent  implements OnInit, OnDestroy {
 
   constructor(
     public modalController: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
     ) { }
 
   ngOnInit() {
@@ -44,7 +47,9 @@ export class StartPostComponent  implements OnInit, OnDestroy {
     const { data } = await modal.onDidDismiss();
     if (!data) return;
     if (data){
-      this.create.emit(data.post.body)
+      // this.create.emit(data.post.body)
+      const body = data.post.body;
+      this.store.dispatch(postsActions.createPost({ request: { body }}));
     }
   }
 

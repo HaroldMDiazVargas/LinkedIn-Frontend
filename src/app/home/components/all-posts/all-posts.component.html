@@ -1,74 +1,77 @@
-<ion-card class="post" *ngFor="let post of allLoadedPosts" >
-    <ion-card-header class="header">
-        <a [routerLink]="['/private', post.author.id]">
-            <ion-avatar class="header__avatar">
-                <ion-img
-                alt="Silhouette of a person's head" [src]="post.author.imagePath ? baseUserImageUrl+post.author.imagePath : baseUserImageUrl+'avatar.svg'"
-                ></ion-img>
-            </ion-avatar>
-        </a>
-        <div class="ion-margin-top header__info">
+<ng-container *ngIf="data$ | async as data">
+    <ion-card class="post" *ngFor="let post of data.posts" >
+        <ion-card-header class="header">
             <a [routerLink]="['/private', post.author.id]">
-                <ion-card-title class="header__title">{{ post.author.firstName }} {{ post.author.lastName }}</ion-card-title>
+                <ion-avatar class="header__avatar">
+                    <ion-img
+                    alt="Silhouette of a person's head" [src]="post.author.imagePath ? baseUserImageUrl+post.author.imagePath : baseUserImageUrl+'avatar.svg'"
+                    ></ion-img>
+                </ion-avatar>
             </a>
-            <ion-card-subtitle class="header__subtitle">
-                <div class="header__subtitle-stats">9.999.999 followers</div>
-                <div class="header__subtitle-date">
-                    <span>{{ post.updatedAt | date:'longDate'}}</span>
-                    <ion-icon name="globe-outline"></ion-icon>
+            <div class="ion-margin-top header__info">
+                <a [routerLink]="['/private', post.author.id]">
+                    <ion-card-title class="header__title">{{ post.author.firstName }} {{ post.author.lastName }}</ion-card-title>
+                </a>
+                <ion-card-subtitle class="header__subtitle">
+                    <div class="header__subtitle-stats">9.999.999 followers</div>
+                    <div class="header__subtitle-date">
+                        <span>{{ post.updatedAt | date:'longDate'}}</span>
+                        <ion-icon name="globe-outline"></ion-icon>
+                    </div>
+                </ion-card-subtitle>
+            </div>
+            <div class="header__change" *ngIf="(userId$ | async) === post.author.id">
+                <ion-icon (click)="presentUpdateModal(post)" class="header__update" name="create-outline"></ion-icon>
+                <ion-icon (click)="deletePost(post.id)" class="header__delete" name="trash-outline"></ion-icon>
+            </div>
+        </ion-card-header>
+    
+        <ion-card-content class="content">
+            <div class="content__text">
+                {{ post.body }}
+            </div>
+            <div class="content__media"></div>
+            <div class="content__statics">
+                <div class="content__statics-reactions">
+                    <div class="icon-container icon-container--blue">
+                        <fa-icon [icon]="faThumbsUp" class="like"></fa-icon>
+                    </div>
+                    <div class="icon-container icon-container--yellow">
+                        <ion-icon name="heart" class="heart"></ion-icon>
+                    </div>
+                    <div class="icon-container icon-container--red">
+                        <ion-icon name="bulb" class="bulb"></ion-icon>
+                    </div>
+                    <span class="content__statics-reactions__total">217</span>
                 </div>
-            </ion-card-subtitle>
-        </div>
-        <div class="header__change" *ngIf="(userId$ | async) === post.author.id">
-            <ion-icon (click)="presentUpdateModal(post)" class="header__update" name="create-outline"></ion-icon>
-            <ion-icon (click)="deletePost(post.id)" class="header__delete" name="trash-outline"></ion-icon>
-        </div>
-    </ion-card-header>
+                <div class="content__statics-comments">
+                    <span>23 comments</span> •
+                    <span>28 times shared</span>
+                </div>
+            </div>
+            <div class="content__divider"></div>
+            <div class="content__interact">
+                <div class="content__react">
+                    <fa-icon [icon]="faThumbsUp" class="content__react-icon"></fa-icon>
+                    <span class="content__react-text">Recommend</span>
+                </div>
+                <div class="content__react">
+                    <fa-icon [icon]="faComment" class="content__react-icon"></fa-icon>
+                    <span class="content__react-text">Comment</span>
+                </div>
+                <div class="content__react">
+                    <ion-icon name="share-social-outline" class="content__react-icon"></ion-icon>
+                    <span class="content__react-text">Share</span>
+                </div>
+                <div class="content__react">
+                    <ion-icon name="send" class="content__react-icon"></ion-icon>
+                    <span class="content__react-text">Send</span>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($any($event))">
+        <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
-    <ion-card-content class="content">
-        <div class="content__text">
-            {{ post.body }}
-        </div>
-        <div class="content__media"></div>
-        <div class="content__statics">
-            <div class="content__statics-reactions">
-                <div class="icon-container icon-container--blue">
-                    <fa-icon [icon]="faThumbsUp" class="like"></fa-icon>
-                </div>
-                <div class="icon-container icon-container--yellow">
-                    <ion-icon name="heart" class="heart"></ion-icon>
-                </div>
-                <div class="icon-container icon-container--red">
-                    <ion-icon name="bulb" class="bulb"></ion-icon>
-                </div>
-                <span class="content__statics-reactions__total">217</span>
-            </div>
-            <div class="content__statics-comments">
-                <span>23 comments</span> •
-                <span>28 times shared</span>
-            </div>
-        </div>
-        <div class="content__divider"></div>
-        <div class="content__interact">
-            <div class="content__react">
-                <fa-icon [icon]="faThumbsUp" class="content__react-icon"></fa-icon>
-                <span class="content__react-text">Recommend</span>
-            </div>
-            <div class="content__react">
-                <fa-icon [icon]="faComment" class="content__react-icon"></fa-icon>
-                <span class="content__react-text">Comment</span>
-            </div>
-            <div class="content__react">
-                <ion-icon name="share-social-outline" class="content__react-icon"></ion-icon>
-                <span class="content__react-text">Share</span>
-            </div>
-            <div class="content__react">
-                <ion-icon name="send" class="content__react-icon"></ion-icon>
-                <span class="content__react-text">Send</span>
-            </div>
-        </div>
-    </ion-card-content>
-</ion-card>
-<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($any($event))">
-    <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
-</ion-infinite-scroll>
+</ng-container>
