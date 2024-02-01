@@ -7,7 +7,7 @@ import { User } from "../models";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { setLoadingSpinner } from "src/app/shared/store/actions";
+import { setErrorMessage, setLoadingSpinner } from "src/app/shared/store/actions";
 
 
 // createEffect takes twos args
@@ -45,10 +45,12 @@ export const loginEffect = createEffect((
             return authService.login(request).pipe(
                 map((currentUser: User) => {
                     store.dispatch(setLoadingSpinner({ status: false}));
+                    store.dispatch(setErrorMessage({ message: '' }));
                     return authActions.loginSuccess({ currentUser })
                 }),
                 catchError((errorResponse: HttpErrorResponse) => {
                     store.dispatch(setLoadingSpinner({ status: false}));
+                    store.dispatch(setErrorMessage({ message: errorResponse.error.error }));
                     return of(authActions.loginFailure({ errors: errorResponse.error }))
                 })
             )

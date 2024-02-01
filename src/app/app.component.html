@@ -1,4 +1,7 @@
 <ion-app>
   <app-loading-spinner *ngIf="showLoading | async"></app-loading-spinner>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet>
+  </ion-router-outlet>
 </ion-app>
+
+<popup-notification *ngIf="errorMessage | async as message" [message]="message"></popup-notification>
