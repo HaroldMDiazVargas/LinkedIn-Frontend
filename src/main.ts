@@ -17,6 +17,8 @@ import * as authEffects from './app/auth/store/effects';
 import * as postEffects from './app/home/store/effects';
 import { appReducer } from './app/store/app.state';
 import { postReducer } from './app/home/store/reducers';
+import { sharedReducer } from './app/shared/store/reducer';
+import { SHARED_STATE_NAME } from './app/shared/store/selector';
 
 if (environment.production) {
   enableProdMode();
@@ -33,9 +35,10 @@ bootstrapApplication(AppComponent, {
     //   auth: authReducer,
     //   posts: postReducer
     // }),
-    // provideStore(appReducer),                                     
-    provideStore({}),
+    provideStore(appReducer),                                    
+    // provideStore({}),
     provideState(authFeatureKey, authReducer),
+    provideState(SHARED_STATE_NAME, sharedReducer),
     provideEffects(authEffects),
     // importProvidersFrom(StoreModule.forRoot({})),                                
     // provideState('appStore', appReducer),        //Takes NAME('auth') and reducer group. Similar on module app as StoreModule.forFeature(name, reducer)  | StoreModule.forRoot on imports[]
