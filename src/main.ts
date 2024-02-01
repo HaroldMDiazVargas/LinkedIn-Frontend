@@ -19,6 +19,7 @@ import { appReducer } from './app/store/app.state';
 import { postReducer } from './app/home/store/reducers';
 import { sharedReducer } from './app/shared/store/reducer';
 import { SHARED_STATE_NAME } from './app/shared/store/selector';
+import { provideRouterStore } from '@ngrx/router-store';
 
 if (environment.production) {
   enableProdMode();
@@ -40,6 +41,7 @@ bootstrapApplication(AppComponent, {
     provideState(authFeatureKey, authReducer),
     provideState(SHARED_STATE_NAME, sharedReducer),
     provideEffects(authEffects),
+    provideRouterStore(),
     // importProvidersFrom(StoreModule.forRoot({})),                                
     // provideState('appStore', appReducer),        //Takes NAME('auth') and reducer group. Similar on module app as StoreModule.forFeature(name, reducer)  | StoreModule.forRoot on imports[]
     // provideEffects(authEffects, postEffects),                      // Register effects globally, similar on module app as EffectsModule.forFeature([Effects]) | .forRoot

@@ -1,4 +1,5 @@
 // import { IAuthState } from "../auth/models";
+import { RouterReducerState, routerReducer } from "@ngrx/router-store";
 import { IAuthState } from "../auth/store/authState";
 import { authFeatureKey, authReducer } from "../auth/store/reducers";
 import { IPostState } from "../home/store/postState.interface";
@@ -23,11 +24,13 @@ import { ISharedState } from "../shared/store/shared.state";
 
 export interface AppState {
     [authFeatureKey]: IAuthState,
-    [SHARED_STATE_NAME]: ISharedState
+    [SHARED_STATE_NAME]: ISharedState;
+    router: RouterReducerState                  //To include the @ngrx-router state
 
 }
 
 export const appReducer = {
     [authFeatureKey]: authReducer,
-    [SHARED_STATE_NAME]: sharedReducer
+    [SHARED_STATE_NAME]: sharedReducer,
+    router: routerReducer
 }
