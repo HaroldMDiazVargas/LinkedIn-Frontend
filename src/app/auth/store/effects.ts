@@ -6,6 +6,8 @@ import { catchError, of, switchMap, map, tap } from "rxjs";
 import { User } from "../models";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { setLoadingSpinner } from "src/app/shared/store/actions";
 
 
 // createEffect takes twos args
@@ -33,16 +35,20 @@ export const registerEffect = createEffect((
 
 export const loginEffect = createEffect((
     actions$ = inject(Actions),
-    authService = inject(AuthService)
+    authService = inject(AuthService),
+    store = inject(Store)
 ) => {
     return actions$.pipe(
         ofType(authActions.login),
         switchMap(({ request }) => {        //mergeMap or exhaustMap, is used also but is like emit single Observable when all innerObservables
+
             return authService.login(request).pipe(
                 map((currentUser: User) => {
+                    store.dispatch(setLoadingSpinner({ status: false}));
                     return authActions.loginSuccess({ currentUser })
                 }),
                 catchError((errorResponse: HttpErrorResponse) => {
+                    store.dispatch(setLoadingSpinner({ status: false}));
                     return of(authActions.loginFailure({ errors: errorResponse.error }))
                 })
             )

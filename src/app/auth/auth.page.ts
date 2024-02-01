@@ -10,6 +10,8 @@ import { authActions } from './store/actions';
 import { ILogin, ISignup } from './models';
 import { selectIsSubmitting, selectSubmissionType, selectValidationErrors } from './store/reducers';
 import { Subscription, combineLatest } from 'rxjs';
+import { LoadingSpinnerComponent } from '../shared/components/loading-spinner/loading-spinner.component';
+import { setLoadingSpinner } from '../shared/store/actions';
 // import { selectIsSubmitting } from './store/selectors';
 
 @Component({
@@ -17,7 +19,7 @@ import { Subscription, combineLatest } from 'rxjs';
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, LoadingSpinnerComponent],
   providers: []
 })
 export class AuthPage implements OnInit, OnDestroy {
@@ -61,6 +63,7 @@ export class AuthPage implements OnInit, OnDestroy {
         email,
         password
       }
+      this.store.dispatch(setLoadingSpinner({ status: true }));
       return this.store.dispatch(authActions.login({ request: loginData }));
       // return this.auth.login({
       //   email,
@@ -79,6 +82,7 @@ export class AuthPage implements OnInit, OnDestroy {
         email,
         password
       }
+      this.store.dispatch(setLoadingSpinner({ status: true }));
       return this.store.dispatch(authActions.register({ request: signupData }));
       // return this.auth.register({
       //   firstName,
